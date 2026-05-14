@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "vehicles": "Fahrzeuge",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "cta": "Fahrzeug anfragen",
+    "menu_open": "Menü öffnen",
+    "menu_close": "Menü schließen"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Premium Fahrzeugimport · Korea → Deutschland",
+      "title": "Driven by Excellence.",
+      "subtitle": "Wir importieren die besten Fahrzeuge aus Südkorea direkt nach Deutschland — handverlesen, vollständig geprüft und für die deutsche Straße bereit.",
+      "cta_primary": "Fahrzeuge entdecken",
+      "cta_secondary": "Kontakt aufnehmen"
+    },
+    "stats": {
+      "imports": "Fahrzeuge importiert",
+      "tuv": "TÜV-zugelassen",
+      "delivery": "Wochen Lieferzeit",
+      "imports_value": "50+",
+      "tuv_value": "100%",
+      "delivery_value": "4"
+    },
+    "categories": {
+      "eyebrow": "Fahrzeugkategorien",
+      "title": "Entdecken Sie unsere Auswahl",
+      "browse": "Kategorie ansehen",
+      "performance": {
+        "label": "Performance",
+        "description": "Hochleistungsfahrzeuge für den echten Enthusiasten. Sportlichkeit auf einem anderen Level."
+      },
+      "luxury": {
+        "label": "Luxury / VIP",
+        "description": "Exklusive Premium-Fahrzeuge für höchste Ansprüche. Eleganz trifft Komfort."
+      },
+      "german_from_korea": {
+        "label": "Deutsche Marken aus Korea",
+        "description": "BMW, Mercedes und Audi — sorgfältig aus Südkorea importiert."
+      }
+    },
+    "why": {
+      "eyebrow": "Warum Norvyn",
+      "title": "Import mit Anspruch",
+      "curated_title": "Kuratierte Auswahl",
+      "curated_desc": "Jedes Fahrzeug wird persönlich besichtigt und nach strengen Qualitätsstandards ausgewählt.",
+      "transparent_title": "Volle Transparenz",
+      "transparent_desc": "Klare Preise, lückenlose Dokumentation und keine versteckten Kosten.",
+      "fullservice_title": "Vollservice aus einer Hand",
+      "fullservice_desc": "Import, Verzollung, TÜV-Abnahme und Zulassung — wir kümmern uns um alles."
+    },
+    "cta_section": {
+      "title": "Ihr Traumwagen wartet.",
+      "subtitle": "Kontaktieren Sie uns und wir finden das perfekte Fahrzeug für Sie.",
+      "primary": "Jetzt anfragen",
+      "secondary": "Per WhatsApp schreiben"
+    }
+  },
+  "vehicles": {
+    "page_title": "Fahrzeuge",
+    "page_description": "Entdecken Sie unsere kuratierten Fahrzeuge aus Südkorea — Performance, Luxury und deutsche Premium-Marken.",
+    "no_results": "Keine Fahrzeuge gefunden.",
+    "no_results_hint": "Versuchen Sie es mit anderen Filtereinstellungen.",
+    "filters": {
+      "all_categories": "Alle Kategorien",
+      "all_fuel": "Alle Antriebe",
+      "price_range": "Preisbereich",
+      "sort": "Sortierung",
+      "sort_newest": "Neueste zuerst",
+      "sort_price_asc": "Preis aufsteigend",
+      "sort_price_desc": "Preis absteigend",
+      "reset": "Filter zurücksetzen"
+    },
+    "status": {
+      "available": "Verfügbar",
+      "reserved": "Reserviert",
+      "sold": "Verkauft",
+      "draft": "Entwurf"
+    },
+    "categories": {
+      "performance": "Performance",
+      "luxury": "Luxury / VIP",
+      "german_from_korea": "Deutsche Marken"
+    },
+    "fuel": {
+      "petrol": "Benzin",
+      "diesel": "Diesel",
+      "hybrid": "Hybrid",
+      "electric": "Elektro"
+    },
+    "transmission": {
+      "automatic": "Automatik",
+      "manual": "Schaltgetriebe"
+    },
+    "price_on_request": "Preis auf Anfrage",
+    "specs": {
+      "mileage": "Kilometerstand",
+      "year": "Baujahr",
+      "fuel": "Antrieb",
+      "transmission": "Getriebe",
+      "power": "Leistung",
+      "engine": "Hubraum",
+      "exterior": "Außenfarbe",
+      "interior": "Innenfarbe",
+      "origin": "Herkunft",
+      "stock_id": "Fahrzeugnummer"
+    },
+    "detail": {
+      "back": "Zurück zur Übersicht",
+      "features": "Ausstattung",
+      "description": "Beschreibung",
+      "inquiry_title": "Fahrzeug anfragen",
+      "import_ready": "Importbereit"
+    },
+    "cta": {
+      "inquire": "Jetzt anfragen",
+      "whatsapp": "WhatsApp Anfrage",
+      "whatsapp_message": "Hallo, ich interessiere mich für: {make} {model} ({year}) — Fahrzeugnummer: {stockId}"
+    }
+  },
+  "inquiry": {
+    "name": "Name",
+    "name_placeholder": "Ihr vollständiger Name",
+    "email": "E-Mail",
+    "email_placeholder": "ihre@email.de",
+    "phone": "Telefon",
+    "phone_placeholder": "+49 XXX XXXXXXXX (optional)",
+    "message": "Nachricht",
+    "message_placeholder": "Ihre Fragen oder Anmerkungen...",
+    "submit": "Anfrage senden",
+    "submitting": "Wird gesendet...",
+    "success_title": "Anfrage erhalten",
+    "success_message": "Vielen Dank! Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+    "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+  },
+  "whatsapp": {
+    "label": "WhatsApp",
+    "aria_label": "Per WhatsApp kontaktieren",
+    "general_message": "Hallo, ich interessiere mich für Ihr Fahrzeugangebot."
+  },
+  "footer": {
+    "tagline": "Premium Fahrzeugimport aus Südkorea.",
+    "nav_title": "Navigation",
+    "legal_title": "Rechtliches",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "copyright": "© {year} Norvyn Motors. Alle Rechte vorbehalten."
+  },
+  "meta": {
+    "home_title": "Premium Fahrzeugimport aus Korea",
+    "home_description": "Norvyn Motors importiert handverlesene Premium-Fahrzeuge aus Südkorea direkt nach Deutschland. Performance, Luxury und deutsche Marken."
+  }
+}
