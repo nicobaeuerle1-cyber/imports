@@ -10,7 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "dependencies": {"resend": "^4.0.0",
+    "resend": "^4.0.0",
     "next": "latest",
     "react": "19.0.0",
     "react-dom": "19.0.0",
@@ -35,6 +35,6 @@
     "postcss": "^8",
     "autoprefixer": "^10.0.1",
     "eslint": "^9",
-    "eslint-config-next": "15.1.0"
+    "eslint-config-next": "latest"
   }
 }
