@@ -10,6 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "dependencies": {"resend": "^4.0.0",
     "next": "latest",
     "react": "19.0.0",
     "react-dom": "19.0.0",
