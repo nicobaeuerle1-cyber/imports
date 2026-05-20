@@ -197,6 +197,43 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* ── Import Process ────────────────────────────────────── */}
+      <section className="border-t border-border py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-16 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="eyebrow mb-3">{t('process.eyebrow')}</p>
+              <h2 className="font-display text-4xl text-foreground sm:text-5xl">
+                {t('process.title')}
+              </h2>
+            </div>
+            <p className="font-sans text-sm text-muted md:text-right">
+              {t('process.duration_label')}{' '}
+              <span className="text-foreground">{t('process.duration_value')}</span>
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {([
+              'step_1', 'step_2', 'step_3', 'step_4', 'step_5', 'step_6',
+            ] as const).map((key, i) => (
+              <div key={key} className="group relative bg-background p-8 transition-colors duration-300 hover:bg-surface">
+                <span className="mb-6 block font-display text-5xl text-border transition-colors duration-300 group-hover:text-gold/20">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="mb-3 font-sans text-sm font-medium text-foreground">
+                  {t(`process.${key}_title` as never)}
+                </h3>
+                <p className="font-sans text-sm leading-relaxed text-muted">
+                  {t(`process.${key}_desc` as never)}
+                </p>
+                <div className="absolute bottom-0 left-0 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Why Norvyn ────────────────────────────────────────── */}
       <section className="border-t border-border bg-surface py-24 lg:py-32">
         <div className="mx-auto max-w-5xl px-6">

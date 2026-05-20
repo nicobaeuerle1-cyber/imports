@@ -50,6 +50,24 @@
       "fullservice_title": "Vollservice aus einer Hand",
       "fullservice_desc": "Import, Verzollung, TÜV-Abnahme und Zulassung — wir kümmern uns um alles."
     },
+    "process": {
+      "eyebrow": "So funktioniert's",
+      "title": "Ihr Weg zum Fahrzeug.",
+      "duration_label": "Gesamtdauer:",
+      "duration_value": "ca. 10–12 Wochen",
+      "step_1_title": "Beratung & Wunschfahrzeug",
+      "step_1_desc": "Sie schildern uns Ihre Vorstellungen — Marke, Modell, Ausstattung, Budget. Wir beraten Sie persönlich und finden das passende Fahrzeug.",
+      "step_2_title": "Fahrzeugauswahl & Besichtigung",
+      "step_2_desc": "Wir wählen handverlesen aus unserem Netzwerk und besichtigen jedes Fahrzeug persönlich vor Ort — inklusive Zustandsprüfung und Unfallhistorie.",
+      "step_3_title": "Kaufabwicklung & Export",
+      "step_3_desc": "Wir übernehmen Kaufvertrag, Exportdokumente und die gesamte Abwicklung auf der Herkunftsseite.",
+      "step_4_title": "Verschiffung nach Deutschland",
+      "step_4_desc": "Ihr Fahrzeug wird per Schiff nach Bremerhaven transportiert. Wir halten Sie während des gesamten Transports auf dem Laufenden.",
+      "step_5_title": "Einfuhr, Zoll & TÜV",
+      "step_5_desc": "Wir kümmern uns um Hafen, Verzollung und die TÜV-Vollabnahme gemäß §21 StVZO — vollständig und ohne Aufwand für Sie.",
+      "step_6_title": "Zulassung & Lieferung",
+      "step_6_desc": "Wir lassen das Fahrzeug auf Sie zu und liefern es direkt zu Ihnen — fahrbereit, mit deutschen Kennzeichen."
+    },
     "cta_section": {
       "title": "Ihr Traumwagen wartet.",
       "subtitle": "Kontaktieren Sie uns und wir finden das perfekte Fahrzeug für Sie.",

@@ -50,6 +50,24 @@
       "fullservice_title": "Full Service",
       "fullservice_desc": "Import, customs, TÜV inspection and registration — we handle everything."
     },
+    "process": {
+      "eyebrow": "How it works",
+      "title": "Your path to the vehicle.",
+      "duration_label": "Total duration:",
+      "duration_value": "approx. 10–12 weeks",
+      "step_1_title": "Consultation & Wishlist",
+      "step_1_desc": "Tell us what you're looking for — make, model, spec, budget. We advise you personally and find the right vehicle.",
+      "step_2_title": "Vehicle Selection & Inspection",
+      "step_2_desc": "We handpick from our network and personally inspect every vehicle on-site — including condition check and accident history.",
+      "step_3_title": "Purchase & Export",
+      "step_3_desc": "We handle the purchase contract, export documents and all logistics on the origin side.",
+      "step_4_title": "Shipping to Germany",
+      "step_4_desc": "Your vehicle is shipped to Bremerhaven. We keep you informed throughout the entire transport.",
+      "step_5_title": "Import, Customs & TÜV",
+      "step_5_desc": "We handle the port, customs clearance and the full TÜV inspection per §21 StVZO — completely hassle-free for you.",
+      "step_6_title": "Registration & Delivery",
+      "step_6_desc": "We register the vehicle in your name and deliver it directly to your door — road-ready with German plates."
+    },
     "cta_section": {
       "title": "Your dream car is waiting.",
       "subtitle": "Contact us and we'll find the perfect vehicle for you.",
