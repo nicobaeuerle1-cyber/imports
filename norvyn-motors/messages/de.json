@@ -150,5 +150,35 @@
   "meta": {
     "home_title": "Premium Fahrzeugimport aus Korea",
     "home_description": "Norvyn Motors importiert handverlesene Premium-Fahrzeuge aus Südkorea direkt nach Deutschland. Performance, Luxury und deutsche Marken."
+  },
+  "about": {
+    "page_title": "Über uns",
+    "page_description": "Wir sind Norvyn Motors — zwei Unternehmer mit einer Mission.",
+    "hero_eyebrow": "Über uns",
+    "hero_title": "Der Osten fährt nach Westen.",
+    "hero_subtitle": "Wir glauben, dass die besten Autos der Welt noch nicht in jeder deutschen Einfahrt stehen. Das ändern wir.",
+    "why_eyebrow": "Warum asiatische Autos?",
+    "why_title": "Mehr Auto. Weniger Aufpreis.",
+    "why_text": "Südkoreanische Hersteller wie Genesis, Kia und Hyundai haben in den letzten Jahren Europas Premiummarken in puncto Technologie, Verarbeitung und Ausstattung eingeholt — und oft überholt. Was fehlt: der direkte Weg nach Deutschland. Genau diesen Weg gehen wir.",
+    "reason_1_title": "Spitzentechnologie",
+    "reason_1_desc": "Koreanische Fahrzeuge führen beim EV-Antrieb, bei Fahrassistenzsystemen und Connected-Car-Features — oft Jahre vor europäischen Wettbewerbern.",
+    "reason_2_title": "Überlegene Ausstattung",
+    "reason_2_desc": "Was in Europa als teure Option gilt, ist in Korea Standard. Panoramadach, Sitzheizung, Premium-Sound — inklusive.",
+    "reason_3_title": "Unschlagbares Preis-Leistungs-Verhältnis",
+    "reason_3_desc": "Gleiche Qualität, geringerer Preis. Wir importieren direkt aus Südkorea und geben diesen Vorteil an unsere Kunden weiter.",
+    "team_eyebrow": "Das Team",
+    "team_title": "Zwei Unternehmer. Eine Vision.",
+    "khodyda_name": "Khodyda Hassan",
+    "khodyda_role": "Geschäftsführer · Unternehmer",
+    "khodyda_bio": "Khodyda weiß, wie man ein Unternehmen aufbaut — und führt. Mit dem Café Jobst in Merzig hat er bewiesen, dass unternehmerischer Erfolg keine Frage des Alters ist. Seine Leidenschaft für Qualität und Menschen treibt Norvyn Motors an.",
+    "nico_name": "Nico Bäuerle",
+    "nico_role": "Geschäftsführer · E-Commerce & Vertrieb",
+    "nico_bio": "Nico kommt aus dem E-Commerce und weiß genau, wie man Produkte online präsentiert und verkauft. Mit Erfahrung im Vertrieb und digitalem Marketing sorgt er dafür, dass Norvyn Motors nicht nur die besten Autos hat — sondern auch gefunden wird.",
+    "mission_eyebrow": "Unsere Mission",
+    "mission_quote": "Wir importieren keine Autos. Wir importieren eine neue Art, Auto zu fahren.",
+    "cta_title": "Bereit für Ihr nächstes Fahrzeug?",
+    "cta_subtitle": "Schauen Sie sich unsere Auswahl an oder kontaktieren Sie uns direkt.",
+    "cta_vehicles": "Fahrzeuge entdecken",
+    "cta_contact": "Kontakt aufnehmen"
   }
 }
