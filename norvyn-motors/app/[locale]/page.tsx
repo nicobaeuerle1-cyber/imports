@@ -74,38 +74,44 @@ export default async function HomePage({
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-background px-6">
-        {/* Ambient gradient */}
+      <section className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-[#080808] px-6">
+        {/* Cinematic video background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover opacity-50"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+
+        {/* Gradient overlays for depth */}
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-[#080808]/20" />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-[#080808]/60 via-transparent to-[#080808]/60" />
+
+        {/* Subtle gold ambient */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 flex items-center justify-center"
         >
-          <div className="h-[600px] w-[600px] rounded-full bg-gold/[0.04] blur-[120px]" />
+          <div className="h-[500px] w-[700px] rounded-full bg-gold/[0.04] blur-[140px]" />
         </div>
 
-        {/* Horizontal rule top */}
-        <div
-          aria-hidden
-          className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"
-        />
-
         <div className="relative z-10 mx-auto max-w-5xl text-center">
-          {/* Eyebrow */}
           <p className="eyebrow mb-8 animate-fade-in">
             {t('hero.eyebrow')}
           </p>
 
-          {/* Headline */}
-          <h1 className="font-display text-5xl font-normal leading-none tracking-tight text-foreground sm:text-7xl md:text-8xl lg:text-[9rem] animate-fade-up">
+          <h1 className="font-display text-5xl font-normal leading-none tracking-tight text-white sm:text-7xl md:text-8xl lg:text-[9rem] animate-fade-up">
             {t('hero.title')}
           </h1>
 
-          {/* Subtitle */}
-          <p className="mx-auto mt-8 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-lg animate-fade-up [animation-delay:100ms]">
+          <p className="mx-auto mt-8 max-w-2xl font-sans text-base leading-relaxed text-white/60 sm:text-lg animate-fade-up [animation-delay:100ms]">
             {t('hero.subtitle')}
           </p>
 
-          {/* CTAs */}
           <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center animate-fade-up [animation-delay:200ms]">
             <Button asChild size="lg">
               <Link href={vehiclesPath as '/fahrzeuge'}>
@@ -121,9 +127,7 @@ export default async function HomePage({
 
         {/* Scroll indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in [animation-delay:600ms]">
-          <div className="flex flex-col items-center gap-2">
-            <div className="h-10 w-px bg-gradient-to-b from-gold/50 to-transparent" />
-          </div>
+          <div className="h-10 w-px bg-gradient-to-b from-gold/60 to-transparent" />
         </div>
       </section>
 

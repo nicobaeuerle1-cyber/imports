@@ -9,9 +9,9 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "Premium Fahrzeugimport · Korea → Deutschland",
+      "eyebrow": "Premium Fahrzeugimport · Asien → Deutschland",
       "title": "Driven by Excellence.",
-      "subtitle": "Wir importieren die besten Fahrzeuge aus Südkorea direkt nach Deutschland — handverlesen, vollständig geprüft und für die deutsche Straße bereit.",
+      "subtitle": "Wir importieren außergewöhnliche Fahrzeuge aus Asien direkt nach Deutschland — handverlesen, vollständig geprüft und bereit für deutsche Straßen.",
       "cta_primary": "Fahrzeuge entdecken",
       "cta_secondary": "Kontakt aufnehmen"
     },
@@ -36,8 +36,8 @@
         "description": "Exklusive Premium-Fahrzeuge für höchste Ansprüche. Eleganz trifft Komfort."
       },
       "german_from_korea": {
-        "label": "Deutsche Marken aus Korea",
-        "description": "BMW, Mercedes und Audi — sorgfältig aus Südkorea importiert."
+        "label": "Deutsche Marken aus Asien",
+        "description": "BMW, Mercedes und Audi — in Asien mit maximaler Serienausstattung gefertigt."
       }
     },
     "why": {
@@ -59,7 +59,7 @@
   },
   "vehicles": {
     "page_title": "Fahrzeuge",
-    "page_description": "Entdecken Sie unsere kuratierten Fahrzeuge aus Südkorea — Performance, Luxury und deutsche Premium-Marken.",
+    "page_description": "Entdecken Sie unsere Fahrzeuge aus Asien — Performance, Luxury und deutsche Premium-Marken.",
     "no_results": "Keine Fahrzeuge gefunden.",
     "no_results_hint": "Versuchen Sie es mit anderen Filtereinstellungen.",
     "filters": {
@@ -70,7 +70,8 @@
       "sort_newest": "Neueste zuerst",
       "sort_price_asc": "Preis aufsteigend",
       "sort_price_desc": "Preis absteigend",
-      "reset": "Filter zurücksetzen"
+      "reset": "Filter zurücksetzen",
+      "search_placeholder": "Marke oder Modell suchen …"
     },
     "status": {
       "available": "Verfügbar",
@@ -140,7 +141,7 @@
     "general_message": "Hallo, ich interessiere mich für Ihr Fahrzeugangebot."
   },
   "footer": {
-    "tagline": "Premium Fahrzeugimport aus Südkorea.",
+    "tagline": "Premium Fahrzeugimport aus Asien.",
     "nav_title": "Navigation",
     "legal_title": "Rechtliches",
     "impressum": "Impressum",
@@ -148,8 +149,8 @@
     "copyright": "© {year} Norvyn Motors. Alle Rechte vorbehalten."
   },
   "meta": {
-    "home_title": "Premium Fahrzeugimport aus Korea",
-    "home_description": "Norvyn Motors importiert handverlesene Premium-Fahrzeuge aus Südkorea direkt nach Deutschland. Performance, Luxury und deutsche Marken."
+    "home_title": "Premium Fahrzeugimport aus Asien",
+    "home_description": "Norvyn Motors importiert handverlesene Premium-Fahrzeuge aus Asien direkt nach Deutschland. Genesis, BYD, Kia, Hyundai — Performance, Luxury und deutsche Marken."
   },
   "about": {
     "page_title": "Über uns",
@@ -159,13 +160,13 @@
     "hero_subtitle": "Wir glauben, dass die besten Autos der Welt noch nicht in jeder deutschen Einfahrt stehen. Das ändern wir.",
     "why_eyebrow": "Warum asiatische Autos?",
     "why_title": "Mehr Auto. Weniger Aufpreis.",
-    "why_text": "Südkoreanische Hersteller wie Genesis, Kia und Hyundai haben in den letzten Jahren Europas Premiummarken in puncto Technologie, Verarbeitung und Ausstattung eingeholt — und oft überholt. Was fehlt: der direkte Weg nach Deutschland. Genau diesen Weg gehen wir.",
+    "why_text": "Hersteller wie Genesis, Kia und Hyundai — aber auch chinesische Pioniere wie BYD, Xiaomi und NIO — haben Europas Premiummarken in Technologie, Verarbeitung und Serienausstattung eingeholt, oft sogar überholt. Was bisher fehlte: ein direkter, transparenter Importweg nach Deutschland. Genau diesen Weg gehen wir.",
     "reason_1_title": "Spitzentechnologie",
-    "reason_1_desc": "Koreanische Fahrzeuge führen beim EV-Antrieb, bei Fahrassistenzsystemen und Connected-Car-Features — oft Jahre vor europäischen Wettbewerbern.",
+    "reason_1_desc": "Asiatische Fahrzeuge führen beim EV-Antrieb, bei Fahrassistenzsystemen und Connected-Car-Features — oft Jahre vor europäischen Wettbewerbern.",
     "reason_2_title": "Überlegene Ausstattung",
-    "reason_2_desc": "Was in Europa als teure Option gilt, ist in Korea Standard. Panoramadach, Sitzheizung, Premium-Sound — inklusive.",
+    "reason_2_desc": "Was in Europa als teure Option gilt, ist in Asien Serie. Panoramadach, Sitzheizung, Premium-Sound — inklusive.",
     "reason_3_title": "Unschlagbares Preis-Leistungs-Verhältnis",
-    "reason_3_desc": "Gleiche Qualität, geringerer Preis. Wir importieren direkt aus Südkorea und geben diesen Vorteil an unsere Kunden weiter.",
+    "reason_3_desc": "Gleiche Qualität, geringerer Preis. Wir importieren direkt aus Asien und geben diesen Vorteil an unsere Kunden weiter.",
     "team_eyebrow": "Das Team",
     "team_title": "Zwei Unternehmer. Eine Vision.",
     "khodyda_name": "Khodyda Hassan",

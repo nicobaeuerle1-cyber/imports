@@ -1,8 +1,9 @@
 'use client'
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-import { useCallback } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { VEHICLE_CATEGORIES, FUEL_TYPES } from '@/lib/constants'
+import { Search } from 'lucide-react'
 
 interface VehicleFiltersProps {
   translations: {
@@ -12,12 +13,14 @@ interface VehicleFiltersProps {
     sortPriceAsc: string
     sortPriceDesc: string
     reset: string
+    searchPlaceholder: string
     categories: Record<string, string>
     fuel: Record<string, string>
   }
   currentCategory?: string
   currentFuel?: string
   currentSort?: string
+  currentSearch?: string
 }
 
 export function VehicleFilters({
@@ -25,10 +28,13 @@ export function VehicleFilters({
   currentCategory,
   currentFuel,
   currentSort,
+  currentSearch,
 }: VehicleFiltersProps) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const [searchValue, setSearchValue] = useState(currentSearch ?? '')
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>()
 
   const createQueryString = useCallback(
     (updates: Record<string, string | undefined>) => {
@@ -50,17 +56,38 @@ export function VehicleFilters({
     router.push(`${pathname}?${qs}`)
   }
 
+  function handleSearchChange(value: string) {
+    setSearchValue(value)
+    clearTimeout(debounceRef.current)
+    debounceRef.current = setTimeout(() => {
+      setFilter('search', value || undefined)
+    }, 350)
+  }
+
   function resetFilters() {
+    setSearchValue('')
     router.push(pathname)
   }
 
-  const hasFilters = !!(currentCategory || currentFuel || currentSort)
+  const hasFilters = !!(currentCategory || currentFuel || currentSort || currentSearch)
 
   const selectClass =
     'h-10 border border-border bg-background px-3 font-sans text-sm text-foreground focus:border-gold focus:outline-none transition-colors'
 
   return (
     <div className="flex flex-wrap items-center gap-3">
+      {/* Search */}
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-subtle" />
+        <input
+          type="text"
+          value={searchValue}
+          onChange={(e) => handleSearchChange(e.target.value)}
+          placeholder={t.searchPlaceholder}
+          className="h-10 w-48 border border-border bg-background pl-9 pr-3 font-sans text-sm text-foreground placeholder:text-subtle focus:border-gold focus:outline-none transition-colors sm:w-56"
+        />
+      </div>
+
       <select
         value={currentCategory ?? ''}
         onChange={(e) => setFilter('category', e.target.value || undefined)}
