@@ -74,7 +74,7 @@ export default async function AboutPage({ params }: PageProps) {
             {/* Team photo */}
             <div className="relative aspect-[4/3] overflow-hidden bg-surface-elevated lg:aspect-auto lg:min-h-[500px]">
               <Image
-                src="/images/team.jpg"
+                src="/images/IMG_2466.png"
                 alt="Khodyda Hassan und Nico Bäuerle — Norvyn Motors"
                 fill
                 className="object-cover object-top"
