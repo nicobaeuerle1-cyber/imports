@@ -24,7 +24,7 @@ export function VehicleCard({
 
   return (
     <Link
-      href={`/fahrzeuge/${vehicle.slug}` as '/fahrzeuge/[slug]'}
+      href={{ pathname: '/fahrzeuge/[slug]', params: { slug: vehicle.slug } }}
       className="group relative flex flex-col bg-background border border-transparent hover:border-border transition-all duration-300"
     >
       {/* Image */}
