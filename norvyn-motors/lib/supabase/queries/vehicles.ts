@@ -9,6 +9,7 @@ interface VehicleFilters {
   maxPrice?: number
   status?: string
   page?: number
+  sort?: 'newest' | 'price_asc' | 'price_desc'
 }
 
 export async function getAvailableVehicles(
@@ -23,9 +24,17 @@ export async function getAvailableVehicles(
     .from('vehicles')
     .select('*, vehicle_images(*)', { count: 'exact' })
     .eq('status', 'available')
-    .order('sort_order', { ascending: true })
-    .order('created_at', { ascending: false })
     .range(from, to)
+
+  if (filters.sort === 'price_asc') {
+    query = query.order('price_eur', { ascending: true, nullsFirst: false })
+  } else if (filters.sort === 'price_desc') {
+    query = query.order('price_eur', { ascending: false, nullsFirst: false })
+  } else {
+    query = query
+      .order('sort_order', { ascending: true })
+      .order('created_at', { ascending: false })
+  }
 
   if (filters.category) query = query.eq('category', filters.category)
   if (filters.fuelType) query = query.eq('fuel_type', filters.fuelType)
