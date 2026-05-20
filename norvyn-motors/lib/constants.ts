@@ -3,8 +3,8 @@ export const VEHICLE_CATEGORIES = [
   { value: 'luxury', labelDe: 'Luxury / VIP', labelEn: 'Luxury / VIP' },
   {
     value: 'german_from_korea',
-    labelDe: 'Deutsche Marken aus Korea',
-    labelEn: 'German Brands from Korea',
+    labelDe: 'Deutsche Marken aus Asien',
+    labelEn: 'German Brands from Asia',
   },
 ] as const
 
