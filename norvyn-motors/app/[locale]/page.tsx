@@ -5,6 +5,7 @@ import { Link } from '@/lib/i18n/navigation'
 import { Button } from '@/components/ui/button'
 import { buildGeneralWhatsAppUrl } from '@/lib/utils/whatsapp'
 import { ArrowRight, CheckCircle } from 'lucide-react'
+import { FaqAccordion } from '@/components/ui/faq-accordion'
 
 export async function generateMetadata({
   params,
@@ -257,6 +258,81 @@ export default async function HomePage({
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Reviews ───────────────────────────────────────────── */}
+      <section className="border-t border-border py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-16 text-center">
+            <p className="eyebrow mb-3">{t('reviews.eyebrow')}</p>
+            <h2 className="font-display text-4xl text-foreground sm:text-5xl">
+              {t('reviews.title')}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-3">
+            {([
+              {
+                name: t('reviews.r1_name'),
+                location: t('reviews.r1_location'),
+                text: t('reviews.r1_text'),
+              },
+              {
+                name: t('reviews.r2_name'),
+                location: t('reviews.r2_location'),
+                text: t('reviews.r2_text'),
+              },
+              {
+                name: t('reviews.r3_name'),
+                location: t('reviews.r3_location'),
+                text: t('reviews.r3_text'),
+              },
+            ]).map((review) => (
+              <div key={review.name} className="flex flex-col gap-6 bg-background p-8">
+                {/* Stars */}
+                <div className="flex gap-0.5 text-gold" aria-label="5 von 5 Sternen">
+                  {'★★★★★'.split('').map((s, i) => (
+                    <span key={i} className="text-base leading-none">{s}</span>
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p className="flex-1 font-sans text-sm leading-relaxed text-muted">
+                  &ldquo;{review.text}&rdquo;
+                </p>
+
+                {/* Attribution */}
+                <div className="border-t border-border pt-5">
+                  <p className="font-sans text-sm font-medium text-foreground">{review.name}</p>
+                  <p className="mt-0.5 font-sans text-xs text-subtle">{review.location}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ───────────────────────────────────────────────── */}
+      <section className="border-t border-border bg-surface py-24 lg:py-32">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="mb-16 text-center">
+            <p className="eyebrow mb-3">{t('faq.eyebrow')}</p>
+            <h2 className="font-display text-4xl text-foreground sm:text-5xl">
+              {t('faq.title')}
+            </h2>
+          </div>
+
+          <FaqAccordion
+            items={[
+              { question: t('faq.q1'), answer: t('faq.a1') },
+              { question: t('faq.q2'), answer: t('faq.a2') },
+              { question: t('faq.q3'), answer: t('faq.a3') },
+              { question: t('faq.q4'), answer: t('faq.a4') },
+              { question: t('faq.q5'), answer: t('faq.a5') },
+              { question: t('faq.q6'), answer: t('faq.a6') },
+            ]}
+          />
         </div>
       </section>
 

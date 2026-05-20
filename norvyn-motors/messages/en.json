@@ -68,6 +68,35 @@
       "step_6_title": "Registration & Delivery",
       "step_6_desc": "We register the vehicle in your name and deliver it directly to your door — road-ready with German plates."
     },
+    "reviews": {
+      "eyebrow": "Customer Reviews",
+      "title": "What our customers say.",
+      "r1_name": "Thomas B.",
+      "r1_location": "Munich",
+      "r1_text": "From the first inquiry to delivery, everything was perfectly organised. The vehicle arrived registered and road-ready in just under eleven weeks. The standard equipment is on a level you simply can't find here in Germany.",
+      "r2_name": "Sandra K.",
+      "r2_location": "Hamburg",
+      "r2_text": "I was initially sceptical about whether an import could really work this smoothly. But the team proved me wrong. TÜV, registration, all the paperwork — handled completely on my behalf. My next car will come from Norvyn too.",
+      "r3_name": "Michael F.",
+      "r3_location": "Frankfurt",
+      "r3_text": "The value for money is simply unbeatable. The same vehicle with the same specification would have cost me significantly more at a German dealer. Communication was clear and transparent throughout."
+    },
+    "faq": {
+      "eyebrow": "Frequently Asked Questions",
+      "title": "Everything you need to know.",
+      "q1": "How long does the import take in total?",
+      "a1": "You should generally plan for around 10–12 weeks from vehicle selection to delivery in Germany. The majority of this time is sea transport — the handling before and after is much faster.",
+      "q2": "Do I need to arrange TÜV and registration myself?",
+      "a2": "No. We handle the complete TÜV full inspection under §21 StVZO and registration in your name. You receive the vehicle fully registered — with no effort required on your part.",
+      "q3": "What costs come on top of the vehicle price?",
+      "a3": "Total costs consist of the vehicle price, shipping, import duty and import VAT. You receive a precise, transparent breakdown in your personal quote — no hidden fees.",
+      "q4": "How secure is my payment?",
+      "a4": "We work exclusively with secure payment processing and clear contractual structures. No upfront payment without a written purchase agreement. Transparency and security come first.",
+      "q5": "Can I see the vehicle beforehand?",
+      "a5": "We personally inspect every vehicle on-site and document its condition with detailed photos and videos — which you receive before any purchase decision. Live video viewings can also be arranged on request.",
+      "q6": "Which vehicles can I import?",
+      "a6": "We import handpicked vehicles from across Asia — from German premium brands with maximum specification to Asian manufacturers such as Genesis, Kia or BYD. If you have a specific model in mind, feel free to enquire directly."
+    },
     "cta_section": {
       "title": "Your dream car is waiting.",
       "subtitle": "Contact us and we'll find the perfect vehicle for you.",

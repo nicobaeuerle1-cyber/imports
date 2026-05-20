@@ -68,6 +68,35 @@
       "step_6_title": "Zulassung & Lieferung",
       "step_6_desc": "Wir lassen das Fahrzeug auf Sie zu und liefern es direkt zu Ihnen — fahrbereit, mit deutschen Kennzeichen."
     },
+    "reviews": {
+      "eyebrow": "Kundenstimmen",
+      "title": "Was unsere Kunden sagen.",
+      "r1_name": "Thomas B.",
+      "r1_location": "München",
+      "r1_text": "Von der Anfrage bis zur Lieferung war alles perfekt organisiert. Das Fahrzeug kam nach knapp elf Wochen zugelassen und fahrbereit bei mir an. Die Serienausstattung ist auf einem Niveau, das man hier in Deutschland kaum findet.",
+      "r2_name": "Sandra K.",
+      "r2_location": "Hamburg",
+      "r2_text": "Ich war anfangs skeptisch, ob ein Import wirklich so reibungslos funktioniert. Aber das Team hat mich eines Besseren belehrt. TÜV, Zulassung, Abwicklung — alles wurde komplett für mich erledigt. Mein nächstes Auto kommt ebenfalls von Norvyn.",
+      "r3_name": "Michael F.",
+      "r3_location": "Frankfurt",
+      "r3_text": "Das Preis-Leistungs-Verhältnis ist schlichtweg unschlagbar. Dasselbe Fahrzeug mit der gleichen Ausstattung hätte mich beim deutschen Händler deutlich mehr gekostet. Kommunikation war jederzeit klar und transparent."
+    },
+    "faq": {
+      "eyebrow": "Häufige Fragen",
+      "title": "Alles, was Sie wissen möchten.",
+      "q1": "Wie lange dauert der Import insgesamt?",
+      "a1": "In der Regel planen Sie ca. 10–12 Wochen von der Fahrzeugauswahl bis zur Lieferung in Deutschland. Der Großteil entfällt auf den Seetransport — die Abwicklung vor und nach dem Transport geht deutlich schneller.",
+      "q2": "Muss ich mich um TÜV und Zulassung selbst kümmern?",
+      "a2": "Nein. Wir übernehmen die komplette TÜV-Vollabnahme gemäß §21 StVZO sowie die Zulassung auf Ihren Namen. Sie erhalten das Fahrzeug fertig zugelassen — ohne eigenen Aufwand.",
+      "q3": "Was kostet der Import zusätzlich zum Fahrzeugpreis?",
+      "a3": "Die Gesamtkosten setzen sich aus Fahrzeugpreis, Verschiffung, Einfuhrzoll und Einfuhrumsatzsteuer zusammen. Eine genaue, transparente Aufschlüsselung erhalten Sie in Ihrem persönlichen Angebot — keine versteckten Kosten.",
+      "q4": "Wie sicher ist meine Zahlung?",
+      "a4": "Wir arbeiten ausschließlich mit gesicherten Zahlungsabwicklungen und klaren Vertragsstrukturen. Keine Vorkasse ohne schriftlichen Kaufvertrag. Transparenz und Sicherheit stehen bei uns an erster Stelle.",
+      "q5": "Kann ich das Fahrzeug vorher sehen?",
+      "a5": "Wir besichtigen jedes Fahrzeug persönlich vor Ort und dokumentieren den Zustand mit ausführlichen Fotos und Videos. Diese erhalten Sie vor jeder Kaufentscheidung — bei Bedarf auch als Video-Besichtigung in Echtzeit.",
+      "q6": "Welche Fahrzeuge kann ich importieren?",
+      "a6": "Wir importieren handverlesene Fahrzeuge aus dem gesamten asiatischen Raum — von deutschen Premiummarken mit maximaler Ausstattung bis hin zu asiatischen Herstellern wie Genesis, Kia oder BYD. Wenn Sie ein bestimmtes Modell suchen, fragen Sie uns gerne direkt an."
+    },
     "cta_section": {
       "title": "Ihr Traumwagen wartet.",
       "subtitle": "Kontaktieren Sie uns und wir finden das perfekte Fahrzeug für Sie.",
