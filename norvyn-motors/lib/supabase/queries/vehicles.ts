@@ -10,6 +10,7 @@ interface VehicleFilters {
   status?: string
   page?: number
   sort?: 'newest' | 'price_asc' | 'price_desc'
+  search?: string
 }
 
 export async function getAvailableVehicles(
@@ -36,6 +37,10 @@ export async function getAvailableVehicles(
       .order('created_at', { ascending: false })
   }
 
+  if (filters.search) {
+    const term = filters.search.trim()
+    query = query.or(`make.ilike.%${term}%,model.ilike.%${term}%,trim.ilike.%${term}%`)
+  }
   if (filters.category) query = query.eq('category', filters.category)
   if (filters.fuelType) query = query.eq('fuel_type', filters.fuelType)
   if (filters.minPrice) query = query.gte('price_eur', filters.minPrice)

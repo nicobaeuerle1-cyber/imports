@@ -4,8 +4,8 @@
  */
 export const siteConfig = {
   name: 'Norvyn Motors',
-  tagline: 'Premium Fahrzeugimport · Korea → Deutschland',
-  taglineEn: 'Premium Vehicle Import · Korea → Germany',
+  tagline: 'Premium Fahrzeugimport · Asien → Deutschland',
+  taglineEn: 'Premium Vehicle Import · Asia → Germany',
 
   // Set via env at launch — safe default for local dev
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',

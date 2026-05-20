@@ -5,6 +5,9 @@ import { Link } from '@/lib/i18n/navigation'
 import { Button } from '@/components/ui/button'
 import { buildGeneralWhatsAppUrl } from '@/lib/utils/whatsapp'
 import { ArrowRight, CheckCircle } from 'lucide-react'
+import { FaqAccordion } from '@/components/ui/faq-accordion'
+import { JsonLd } from '@/components/seo/json-ld'
+import { siteConfig } from '@/lib/seo/site-config'
 
 export async function generateMetadata({
   params,
@@ -71,41 +74,76 @@ export default async function HomePage({
     },
   ]
 
+  const autoDealer = {
+    '@context': 'https://schema.org',
+    '@type': 'AutoDealer',
+    name: siteConfig.name,
+    description:
+      locale === 'de'
+        ? 'Premium Fahrzeugimport aus Asien nach Deutschland — handverlesen, TÜV-zugelassen und vollständig abgewickelt.'
+        : 'Premium vehicle import from Asia to Germany — handpicked, TÜV approved and fully managed.',
+    url: siteConfig.url,
+    email: siteConfig.company.email || undefined,
+    telephone: siteConfig.company.phone || undefined,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.company.address || undefined,
+      addressLocality: siteConfig.company.city || undefined,
+      addressCountry: 'DE',
+    },
+    areaServed: 'DE',
+    priceRange: '€€–€€€€',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: locale === 'de' ? 'Premium Importfahrzeuge aus Asien' : 'Premium Import Vehicles from Asia',
+    },
+    sameAs: [
+      siteConfig.social.instagram ? `https://instagram.com/${siteConfig.social.instagram}` : undefined,
+    ].filter(Boolean),
+  }
+
   return (
     <>
+      <JsonLd data={autoDealer} />
       {/* ── Hero ──────────────────────────────────────────────── */}
-      <section className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-background px-6">
-        {/* Ambient gradient */}
+      <section className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-[#080808] px-6">
+        {/* Cinematic video background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover opacity-50"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+
+        {/* Gradient overlays for depth */}
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-[#080808]/20" />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-[#080808]/60 via-transparent to-[#080808]/60" />
+
+        {/* Subtle gold ambient */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 flex items-center justify-center"
         >
-          <div className="h-[600px] w-[600px] rounded-full bg-gold/[0.04] blur-[120px]" />
+          <div className="h-[500px] w-[700px] rounded-full bg-gold/[0.04] blur-[140px]" />
         </div>
 
-        {/* Horizontal rule top */}
-        <div
-          aria-hidden
-          className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"
-        />
-
         <div className="relative z-10 mx-auto max-w-5xl text-center">
-          {/* Eyebrow */}
           <p className="eyebrow mb-8 animate-fade-in">
             {t('hero.eyebrow')}
           </p>
 
-          {/* Headline */}
-          <h1 className="font-display text-5xl font-normal leading-none tracking-tight text-foreground sm:text-7xl md:text-8xl lg:text-[9rem] animate-fade-up">
+          <h1 className="font-display text-5xl font-normal leading-none tracking-tight text-white sm:text-7xl md:text-8xl lg:text-[9rem] animate-fade-up">
             {t('hero.title')}
           </h1>
 
-          {/* Subtitle */}
-          <p className="mx-auto mt-8 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-lg animate-fade-up [animation-delay:100ms]">
+          <p className="mx-auto mt-8 max-w-2xl font-sans text-base leading-relaxed text-white/60 sm:text-lg animate-fade-up [animation-delay:100ms]">
             {t('hero.subtitle')}
           </p>
 
-          {/* CTAs */}
           <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center animate-fade-up [animation-delay:200ms]">
             <Button asChild size="lg">
               <Link href={vehiclesPath as '/fahrzeuge'}>
@@ -121,9 +159,7 @@ export default async function HomePage({
 
         {/* Scroll indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in [animation-delay:600ms]">
-          <div className="flex flex-col items-center gap-2">
-            <div className="h-10 w-px bg-gradient-to-b from-gold/50 to-transparent" />
-          </div>
+          <div className="h-10 w-px bg-gradient-to-b from-gold/60 to-transparent" />
         </div>
       </section>
 
@@ -193,6 +229,43 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* ── Import Process ────────────────────────────────────── */}
+      <section className="border-t border-border py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-16 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="eyebrow mb-3">{t('process.eyebrow')}</p>
+              <h2 className="font-display text-4xl text-foreground sm:text-5xl">
+                {t('process.title')}
+              </h2>
+            </div>
+            <p className="font-sans text-sm text-muted md:text-right">
+              {t('process.duration_label')}{' '}
+              <span className="text-foreground">{t('process.duration_value')}</span>
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {([
+              'step_1', 'step_2', 'step_3', 'step_4', 'step_5', 'step_6',
+            ] as const).map((key, i) => (
+              <div key={key} className="group relative bg-background p-8 transition-colors duration-300 hover:bg-surface">
+                <span className="mb-6 block font-display text-5xl text-border transition-colors duration-300 group-hover:text-gold/20">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="mb-3 font-sans text-sm font-medium text-foreground">
+                  {t(`process.${key}_title` as never)}
+                </h3>
+                <p className="font-sans text-sm leading-relaxed text-muted">
+                  {t(`process.${key}_desc` as never)}
+                </p>
+                <div className="absolute bottom-0 left-0 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Why Norvyn ────────────────────────────────────────── */}
       <section className="border-t border-border bg-surface py-24 lg:py-32">
         <div className="mx-auto max-w-5xl px-6">
@@ -216,6 +289,81 @@ export default async function HomePage({
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Reviews ───────────────────────────────────────────── */}
+      <section className="border-t border-border py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-16 text-center">
+            <p className="eyebrow mb-3">{t('reviews.eyebrow')}</p>
+            <h2 className="font-display text-4xl text-foreground sm:text-5xl">
+              {t('reviews.title')}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-3">
+            {([
+              {
+                name: t('reviews.r1_name'),
+                location: t('reviews.r1_location'),
+                text: t('reviews.r1_text'),
+              },
+              {
+                name: t('reviews.r2_name'),
+                location: t('reviews.r2_location'),
+                text: t('reviews.r2_text'),
+              },
+              {
+                name: t('reviews.r3_name'),
+                location: t('reviews.r3_location'),
+                text: t('reviews.r3_text'),
+              },
+            ]).map((review) => (
+              <div key={review.name} className="flex flex-col gap-6 bg-background p-8">
+                {/* Stars */}
+                <div className="flex gap-0.5 text-gold" aria-label="5 von 5 Sternen">
+                  {'★★★★★'.split('').map((s, i) => (
+                    <span key={i} className="text-base leading-none">{s}</span>
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p className="flex-1 font-sans text-sm leading-relaxed text-muted">
+                  &ldquo;{review.text}&rdquo;
+                </p>
+
+                {/* Attribution */}
+                <div className="border-t border-border pt-5">
+                  <p className="font-sans text-sm font-medium text-foreground">{review.name}</p>
+                  <p className="mt-0.5 font-sans text-xs text-subtle">{review.location}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ───────────────────────────────────────────────── */}
+      <section className="border-t border-border bg-surface py-24 lg:py-32">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="mb-16 text-center">
+            <p className="eyebrow mb-3">{t('faq.eyebrow')}</p>
+            <h2 className="font-display text-4xl text-foreground sm:text-5xl">
+              {t('faq.title')}
+            </h2>
+          </div>
+
+          <FaqAccordion
+            items={[
+              { question: t('faq.q1'), answer: t('faq.a1') },
+              { question: t('faq.q2'), answer: t('faq.a2') },
+              { question: t('faq.q3'), answer: t('faq.a3') },
+              { question: t('faq.q4'), answer: t('faq.a4') },
+              { question: t('faq.q5'), answer: t('faq.a5') },
+              { question: t('faq.q6'), answer: t('faq.a6') },
+            ]}
+          />
         </div>
       </section>
 

@@ -106,7 +106,7 @@ export default async function KontaktPage({
                         {locale === 'de' ? 'Import aus' : 'Importing from'}
                       </p>
                       <p className="mt-0.5 font-sans text-xs text-muted">
-                        {locale === 'de' ? 'Südkorea → Deutschland' : 'South Korea → Germany'}
+                        {locale === 'de' ? 'Asien → Deutschland' : 'Asia → Germany'}
                       </p>
                     </div>
                   </div>

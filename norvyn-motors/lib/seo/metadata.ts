@@ -64,10 +64,10 @@ export function generateVehicleMetadata(
 
   const descDe =
     vehicle.seo_description_de ??
-    `${vehicle.year} ${vehicle.make} ${vehicle.model} – Premium Import aus Südkorea. ${vehicle.mileage_km?.toLocaleString('de-DE')} km, ${vehicle.fuel_type}. Jetzt anfragen bei Norvyn Motors.`
+    `${vehicle.year} ${vehicle.make} ${vehicle.model} – Premium Import aus Asien. ${vehicle.mileage_km?.toLocaleString('de-DE')} km, ${vehicle.fuel_type}. Jetzt anfragen bei Norvyn Motors.`
   const descEn =
     vehicle.seo_description_en ??
-    `${vehicle.year} ${vehicle.make} ${vehicle.model} – Premium import from South Korea. ${vehicle.mileage_km?.toLocaleString('en-GB')} km, ${vehicle.fuel_type}. Inquire now at Norvyn Motors.`
+    `${vehicle.year} ${vehicle.make} ${vehicle.model} – Premium import from Asia. ${vehicle.mileage_km?.toLocaleString('en-GB')} km, ${vehicle.fuel_type}. Inquire now at Norvyn Motors.`
 
   const title = locale === 'de' ? titleDe : titleEn
   const description = locale === 'de' ? descDe : descEn

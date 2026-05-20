@@ -9,9 +9,9 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "Premium Vehicle Import · Korea → Germany",
+      "eyebrow": "Premium Vehicle Import · Asia → Germany",
       "title": "Driven by Excellence.",
-      "subtitle": "We import the finest vehicles from South Korea directly to Germany — handpicked, fully inspected, and road-ready.",
+      "subtitle": "We import extraordinary vehicles from Asia directly to Germany — handpicked, fully inspected, and road-ready.",
       "cta_primary": "Browse Vehicles",
       "cta_secondary": "Get in touch"
     },
@@ -36,8 +36,8 @@
         "description": "Exclusive premium vehicles for the highest standards. Elegance meets comfort."
       },
       "german_from_korea": {
-        "label": "German Brands from Korea",
-        "description": "BMW, Mercedes and Audi — carefully imported from South Korea."
+        "label": "German Brands from Asia",
+        "description": "BMW, Mercedes and Audi — built in Asia with maximum standard equipment."
       }
     },
     "why": {
@@ -50,6 +50,53 @@
       "fullservice_title": "Full Service",
       "fullservice_desc": "Import, customs, TÜV inspection and registration — we handle everything."
     },
+    "process": {
+      "eyebrow": "How it works",
+      "title": "Your path to the vehicle.",
+      "duration_label": "Total duration:",
+      "duration_value": "approx. 10–12 weeks",
+      "step_1_title": "Consultation & Wishlist",
+      "step_1_desc": "Tell us what you're looking for — make, model, spec, budget. We advise you personally and find the right vehicle.",
+      "step_2_title": "Vehicle Selection & Inspection",
+      "step_2_desc": "We handpick from our network and personally inspect every vehicle on-site — including condition check and accident history.",
+      "step_3_title": "Purchase & Export",
+      "step_3_desc": "We handle the purchase contract, export documents and all logistics on the origin side.",
+      "step_4_title": "Shipping to Germany",
+      "step_4_desc": "Your vehicle is shipped to Bremerhaven. We keep you informed throughout the entire transport.",
+      "step_5_title": "Import, Customs & TÜV",
+      "step_5_desc": "We handle the port, customs clearance and the full TÜV inspection per §21 StVZO — completely hassle-free for you.",
+      "step_6_title": "Registration & Delivery",
+      "step_6_desc": "We register the vehicle in your name and deliver it directly to your door — road-ready with German plates."
+    },
+    "reviews": {
+      "eyebrow": "Customer Reviews",
+      "title": "What our customers say.",
+      "r1_name": "Thomas B.",
+      "r1_location": "Munich",
+      "r1_text": "From the first inquiry to delivery, everything was perfectly organised. The vehicle arrived registered and road-ready in just under eleven weeks. The standard equipment is on a level you simply can't find here in Germany.",
+      "r2_name": "Sandra K.",
+      "r2_location": "Hamburg",
+      "r2_text": "I was initially sceptical about whether an import could really work this smoothly. But the team proved me wrong. TÜV, registration, all the paperwork — handled completely on my behalf. My next car will come from Norvyn too.",
+      "r3_name": "Michael F.",
+      "r3_location": "Frankfurt",
+      "r3_text": "The value for money is simply unbeatable. The same vehicle with the same specification would have cost me significantly more at a German dealer. Communication was clear and transparent throughout."
+    },
+    "faq": {
+      "eyebrow": "Frequently Asked Questions",
+      "title": "Everything you need to know.",
+      "q1": "How long does the import take in total?",
+      "a1": "You should generally plan for around 10–12 weeks from vehicle selection to delivery in Germany. The majority of this time is sea transport — the handling before and after is much faster.",
+      "q2": "Do I need to arrange TÜV and registration myself?",
+      "a2": "No. We handle the complete TÜV full inspection under §21 StVZO and registration in your name. You receive the vehicle fully registered — with no effort required on your part.",
+      "q3": "What costs come on top of the vehicle price?",
+      "a3": "Total costs consist of the vehicle price, shipping, import duty and import VAT. You receive a precise, transparent breakdown in your personal quote — no hidden fees.",
+      "q4": "How secure is my payment?",
+      "a4": "We work exclusively with secure payment processing and clear contractual structures. No upfront payment without a written purchase agreement. Transparency and security come first.",
+      "q5": "Can I see the vehicle beforehand?",
+      "a5": "We personally inspect every vehicle on-site and document its condition with detailed photos and videos — which you receive before any purchase decision. Live video viewings can also be arranged on request.",
+      "q6": "Which vehicles can I import?",
+      "a6": "We import handpicked vehicles from across Asia — from German premium brands with maximum specification to Asian manufacturers such as Genesis, Kia or BYD. If you have a specific model in mind, feel free to enquire directly."
+    },
     "cta_section": {
       "title": "Your dream car is waiting.",
       "subtitle": "Contact us and we'll find the perfect vehicle for you.",
@@ -59,7 +106,7 @@
   },
   "vehicles": {
     "page_title": "Vehicles",
-    "page_description": "Discover our curated vehicles from South Korea — Performance, Luxury and German premium brands.",
+    "page_description": "Discover our vehicles from Asia — Performance, Luxury and German premium brands.",
     "no_results": "No vehicles found.",
     "no_results_hint": "Try adjusting your filter settings.",
     "filters": {
@@ -70,7 +117,8 @@
       "sort_newest": "Newest first",
       "sort_price_asc": "Price ascending",
       "sort_price_desc": "Price descending",
-      "reset": "Reset filters"
+      "reset": "Reset filters",
+      "search_placeholder": "Search make or model …"
     },
     "status": {
       "available": "Available",
@@ -140,7 +188,7 @@
     "general_message": "Hello, I am interested in your vehicle inventory."
   },
   "footer": {
-    "tagline": "Premium vehicle import from South Korea.",
+    "tagline": "Premium vehicle import from Asia.",
     "nav_title": "Navigation",
     "legal_title": "Legal",
     "impressum": "Legal Notice",
@@ -148,8 +196,8 @@
     "copyright": "© {year} Norvyn Motors. All rights reserved."
   },
   "meta": {
-    "home_title": "Premium Vehicle Import from Korea",
-    "home_description": "Norvyn Motors imports handpicked premium vehicles from South Korea directly to Germany. Performance, Luxury and German brands."
+    "home_title": "Premium Vehicle Import from Asia",
+    "home_description": "Norvyn Motors imports handpicked premium vehicles from Asia directly to Germany. Genesis, BYD, Kia, Hyundai — Performance, Luxury and German brands."
   },
   "about": {
     "page_title": "About Us",
@@ -159,13 +207,13 @@
     "hero_subtitle": "We believe the world's best cars aren't yet in every German driveway. We're changing that.",
     "why_eyebrow": "Why Asian cars?",
     "why_title": "More Car. Less Markup.",
-    "why_text": "South Korean manufacturers like Genesis, Kia and Hyundai have caught up with — and often surpassed — Europe's premium brands in terms of technology, build quality and features. What's missing: a direct route to Germany. That's exactly the route we're taking.",
+    "why_text": "Manufacturers like Genesis, Kia and Hyundai — alongside Chinese pioneers like BYD, Xiaomi and NIO — have matched and often surpassed Europe's premium brands in technology, build quality and standard equipment. What was missing: a direct, transparent import route to Germany. That's exactly the route we're taking.",
     "reason_1_title": "Cutting-Edge Technology",
-    "reason_1_desc": "Korean vehicles lead in EV drivetrains, driver assistance systems and connected-car features — often years ahead of European competitors.",
+    "reason_1_desc": "Asian vehicles lead in EV drivetrains, driver assistance systems and connected-car features — often years ahead of European competitors.",
     "reason_2_title": "Superior Equipment",
-    "reason_2_desc": "What's considered an expensive option in Europe is standard in Korea. Panoramic roof, heated seats, premium sound — included.",
+    "reason_2_desc": "What's considered an expensive option in Europe is standard in Asia. Panoramic roof, heated seats, premium sound — included.",
     "reason_3_title": "Unbeatable Value",
-    "reason_3_desc": "Same quality, lower price. We import directly from South Korea and pass this advantage on to our customers.",
+    "reason_3_desc": "Same quality, lower price. We import directly from Asia and pass this advantage on to our customers.",
     "team_eyebrow": "The Team",
     "team_title": "Two Entrepreneurs. One Vision.",
     "khodyda_name": "Khodyda Hassan",

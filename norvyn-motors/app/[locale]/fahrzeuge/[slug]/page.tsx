@@ -11,6 +11,8 @@ import { Link } from '@/lib/i18n/navigation'
 import { ImageGallery } from '@/components/vehicles/image-gallery'
 import { InquiryForm } from '@/components/vehicles/inquiry-form'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
+import { JsonLd } from '@/components/seo/json-ld'
+import { siteConfig } from '@/lib/seo/site-config'
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>
@@ -42,6 +44,28 @@ export default async function VehicleDetailPage({ params }: PageProps) {
   const t = await getTranslations('vehicles')
   const tInquiry = await getTranslations('inquiry')
 
+  const fuelLabels: Record<string, string> = {
+    petrol: t('fuel.petrol'),
+    diesel: t('fuel.diesel'),
+    hybrid: t('fuel.hybrid'),
+    electric: t('fuel.electric'),
+  }
+  const transmissionLabels: Record<string, string> = {
+    automatic: t('transmission.automatic'),
+    manual: t('transmission.manual'),
+  }
+  const statusLabels: Record<string, string> = {
+    available: t('status.available'),
+    reserved: t('status.reserved'),
+    sold: t('status.sold'),
+    draft: t('status.draft'),
+  }
+  const categoryLabels: Record<string, string> = {
+    performance: t('categories.performance'),
+    luxury: t('categories.luxury'),
+    german_from_korea: t('categories.german_from_korea'),
+  }
+
   const whatsappUrl = buildVehicleWhatsAppUrl(vehicle, locale as 'de' | 'en')
   const vehicleInfo =
     locale === 'de'
@@ -67,14 +91,13 @@ export default async function VehicleDetailPage({ params }: PageProps) {
     {
       label: t('specs.fuel'),
       value: vehicle.fuel_type
-        ? (t(`fuel.${vehicle.fuel_type}` as 'fuel.petrol') ?? vehicle.fuel_type)
+        ? (fuelLabels[vehicle.fuel_type] ?? vehicle.fuel_type)
         : null,
     },
     {
       label: t('specs.transmission'),
       value: vehicle.transmission
-        ? (t(`transmission.${vehicle.transmission}` as 'transmission.automatic') ??
-          vehicle.transmission)
+        ? (transmissionLabels[vehicle.transmission] ?? vehicle.transmission)
         : null,
     },
     {
@@ -111,7 +134,59 @@ export default async function VehicleDetailPage({ params }: PageProps) {
     whatsapp: t('cta.whatsapp'),
   }
 
+  const primaryImage = sortedImages[0]
+  const fuelTypeSchema: Record<string, string> = {
+    petrol: 'Gasoline',
+    diesel: 'Diesel',
+    hybrid: 'HybridElectric',
+    electric: 'Electric',
+  }
+
+  const vehicleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Car',
+    name: `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ` ${vehicle.trim}` : ''}`,
+    brand: { '@type': 'Brand', name: vehicle.make },
+    model: vehicle.model,
+    vehicleModelDate: String(vehicle.year),
+    ...(vehicle.mileage_km != null && {
+      mileageFromOdometer: {
+        '@type': 'QuantitativeValue',
+        value: vehicle.mileage_km,
+        unitCode: 'KMT',
+      },
+    }),
+    ...(vehicle.fuel_type && { fuelType: fuelTypeSchema[vehicle.fuel_type] ?? vehicle.fuel_type }),
+    ...(vehicle.transmission && { vehicleTransmission: vehicle.transmission }),
+    ...(vehicle.power_kw && {
+      vehicleEngine: {
+        '@type': 'EngineSpecification',
+        enginePower: {
+          '@type': 'QuantitativeValue',
+          value: vehicle.power_kw,
+          unitCode: 'KWT',
+        },
+      },
+    }),
+    ...(primaryImage && { image: primaryImage.url }),
+    ...(vehicle.price_eur && {
+      offers: {
+        '@type': 'Offer',
+        price: vehicle.price_eur,
+        priceCurrency: 'EUR',
+        availability: 'https://schema.org/InStock',
+        seller: { '@type': 'AutoDealer', name: siteConfig.name, url: siteConfig.url },
+      },
+    }),
+    description:
+      locale === 'de'
+        ? (vehicle.description_de ?? `${vehicle.year} ${vehicle.make} ${vehicle.model} – Premium Import aus Asien bei Norvyn Motors.`)
+        : (vehicle.description_en ?? `${vehicle.year} ${vehicle.make} ${vehicle.model} – Premium import from Asia at Norvyn Motors.`),
+  }
+
   return (
+    <>
+      <JsonLd data={vehicleSchema} />
     <div className="mx-auto max-w-7xl px-6 py-24 lg:py-32">
       {/* Back link */}
       <Link
@@ -174,10 +249,10 @@ export default async function VehicleDetailPage({ params }: PageProps) {
             <div className="mb-4 flex items-start justify-between gap-3">
               <div className="flex flex-wrap gap-2">
                 <Badge variant={vehicle.status as BadgeVariant}>
-                  {t(`status.${vehicle.status}` as 'status.available')}
+                  {statusLabels[vehicle.status] ?? vehicle.status}
                 </Badge>
                 <Badge variant={vehicle.category as BadgeVariant}>
-                  {t(`categories.${vehicle.category}` as 'categories.performance')}
+                  {categoryLabels[vehicle.category] ?? vehicle.category}
                 </Badge>
                 {vehicle.import_ready && (
                   <Badge variant="default">{t('detail.import_ready')}</Badge>
@@ -242,5 +317,6 @@ export default async function VehicleDetailPage({ params }: PageProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }

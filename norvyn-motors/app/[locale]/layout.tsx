@@ -37,8 +37,8 @@ export async function generateMetadata({
     },
     description:
       locale === 'de'
-        ? 'Premium Fahrzeugimport aus Südkorea nach Deutschland.'
-        : 'Premium vehicle import from South Korea to Germany.',
+        ? 'Premium Fahrzeugimport aus Asien nach Deutschland.'
+        : 'Premium vehicle import from Asia to Germany.',
     openGraph: {
       siteName: siteConfig.name,
       locale,

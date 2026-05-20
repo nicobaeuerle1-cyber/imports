@@ -16,6 +16,7 @@ interface PageProps {
     fuelType?: string
     sort?: string
     page?: string
+    search?: string
   }>
 }
 
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function VehiclesPage({ params, searchParams }: PageProps) {
   const { locale } = await params
-  const { category, fuelType, sort, page: pageStr } = await searchParams
+  const { category, fuelType, sort, page: pageStr, search } = await searchParams
   setRequestLocale(locale)
 
   const t = await getTranslations('vehicles')
@@ -47,6 +48,7 @@ export default async function VehiclesPage({ params, searchParams }: PageProps) 
     fuelType,
     sort: validSort,
     page,
+    search,
   })
 
   const totalPages = Math.ceil(total / INVENTORY_PAGE_SIZE)
@@ -58,6 +60,7 @@ export default async function VehiclesPage({ params, searchParams }: PageProps) 
     sortPriceAsc: t('filters.sort_price_asc'),
     sortPriceDesc: t('filters.sort_price_desc'),
     reset: t('filters.reset'),
+    searchPlaceholder: t('filters.search_placeholder'),
     categories: {
       performance: t('categories.performance'),
       luxury: t('categories.luxury'),
@@ -89,6 +92,7 @@ export default async function VehiclesPage({ params, searchParams }: PageProps) 
     if (category) params.set('category', category)
     if (fuelType) params.set('fuelType', fuelType)
     if (sort) params.set('sort', sort)
+    if (search) params.set('search', search)
     if (p > 1) params.set('page', String(p))
     const qs = params.toString()
     return qs ? `/fahrzeuge?${qs}` : '/fahrzeuge'
@@ -120,6 +124,7 @@ export default async function VehiclesPage({ params, searchParams }: PageProps) 
             currentCategory={category}
             currentFuel={fuelType}
             currentSort={sort}
+            currentSearch={search}
           />
         </Suspense>
         <p className="hidden font-sans text-xs text-subtle sm:block">
