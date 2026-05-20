@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { buildGeneralWhatsAppUrl } from '@/lib/utils/whatsapp'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { FaqAccordion } from '@/components/ui/faq-accordion'
+import { JsonLd } from '@/components/seo/json-ld'
+import { siteConfig } from '@/lib/seo/site-config'
 
 export async function generateMetadata({
   params,
@@ -72,8 +74,37 @@ export default async function HomePage({
     },
   ]
 
+  const autoDealer = {
+    '@context': 'https://schema.org',
+    '@type': 'AutoDealer',
+    name: siteConfig.name,
+    description:
+      locale === 'de'
+        ? 'Premium Fahrzeugimport aus Asien nach Deutschland — handverlesen, TÜV-zugelassen und vollständig abgewickelt.'
+        : 'Premium vehicle import from Asia to Germany — handpicked, TÜV approved and fully managed.',
+    url: siteConfig.url,
+    email: siteConfig.company.email || undefined,
+    telephone: siteConfig.company.phone || undefined,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.company.address || undefined,
+      addressLocality: siteConfig.company.city || undefined,
+      addressCountry: 'DE',
+    },
+    areaServed: 'DE',
+    priceRange: '€€–€€€€',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: locale === 'de' ? 'Premium Importfahrzeuge aus Asien' : 'Premium Import Vehicles from Asia',
+    },
+    sameAs: [
+      siteConfig.social.instagram ? `https://instagram.com/${siteConfig.social.instagram}` : undefined,
+    ].filter(Boolean),
+  }
+
   return (
     <>
+      <JsonLd data={autoDealer} />
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-[#080808] px-6">
         {/* Cinematic video background */}

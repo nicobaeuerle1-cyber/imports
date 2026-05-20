@@ -34,7 +34,7 @@ export function VehicleFilters({
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [searchValue, setSearchValue] = useState(currentSearch ?? '')
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>()
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const createQueryString = useCallback(
     (updates: Record<string, string | undefined>) => {

@@ -11,6 +11,8 @@ import { Link } from '@/lib/i18n/navigation'
 import { ImageGallery } from '@/components/vehicles/image-gallery'
 import { InquiryForm } from '@/components/vehicles/inquiry-form'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
+import { JsonLd } from '@/components/seo/json-ld'
+import { siteConfig } from '@/lib/seo/site-config'
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>
@@ -132,7 +134,59 @@ export default async function VehicleDetailPage({ params }: PageProps) {
     whatsapp: t('cta.whatsapp'),
   }
 
+  const primaryImage = sortedImages[0]
+  const fuelTypeSchema: Record<string, string> = {
+    petrol: 'Gasoline',
+    diesel: 'Diesel',
+    hybrid: 'HybridElectric',
+    electric: 'Electric',
+  }
+
+  const vehicleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Car',
+    name: `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ` ${vehicle.trim}` : ''}`,
+    brand: { '@type': 'Brand', name: vehicle.make },
+    model: vehicle.model,
+    vehicleModelDate: String(vehicle.year),
+    ...(vehicle.mileage_km != null && {
+      mileageFromOdometer: {
+        '@type': 'QuantitativeValue',
+        value: vehicle.mileage_km,
+        unitCode: 'KMT',
+      },
+    }),
+    ...(vehicle.fuel_type && { fuelType: fuelTypeSchema[vehicle.fuel_type] ?? vehicle.fuel_type }),
+    ...(vehicle.transmission && { vehicleTransmission: vehicle.transmission }),
+    ...(vehicle.power_kw && {
+      vehicleEngine: {
+        '@type': 'EngineSpecification',
+        enginePower: {
+          '@type': 'QuantitativeValue',
+          value: vehicle.power_kw,
+          unitCode: 'KWT',
+        },
+      },
+    }),
+    ...(primaryImage && { image: primaryImage.url }),
+    ...(vehicle.price_eur && {
+      offers: {
+        '@type': 'Offer',
+        price: vehicle.price_eur,
+        priceCurrency: 'EUR',
+        availability: 'https://schema.org/InStock',
+        seller: { '@type': 'AutoDealer', name: siteConfig.name, url: siteConfig.url },
+      },
+    }),
+    description:
+      locale === 'de'
+        ? (vehicle.description_de ?? `${vehicle.year} ${vehicle.make} ${vehicle.model} – Premium Import aus Asien bei Norvyn Motors.`)
+        : (vehicle.description_en ?? `${vehicle.year} ${vehicle.make} ${vehicle.model} – Premium import from Asia at Norvyn Motors.`),
+  }
+
   return (
+    <>
+      <JsonLd data={vehicleSchema} />
     <div className="mx-auto max-w-7xl px-6 py-24 lg:py-32">
       {/* Back link */}
       <Link
@@ -263,5 +317,6 @@ export default async function VehicleDetailPage({ params }: PageProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }
