@@ -150,5 +150,35 @@
   "meta": {
     "home_title": "Premium Vehicle Import from Korea",
     "home_description": "Norvyn Motors imports handpicked premium vehicles from South Korea directly to Germany. Performance, Luxury and German brands."
+  },
+  "about": {
+    "page_title": "About Us",
+    "page_description": "We are Norvyn Motors — two entrepreneurs on a mission.",
+    "hero_eyebrow": "About Us",
+    "hero_title": "The East Drives West.",
+    "hero_subtitle": "We believe the world's best cars aren't yet in every German driveway. We're changing that.",
+    "why_eyebrow": "Why Asian cars?",
+    "why_title": "More Car. Less Markup.",
+    "why_text": "South Korean manufacturers like Genesis, Kia and Hyundai have caught up with — and often surpassed — Europe's premium brands in terms of technology, build quality and features. What's missing: a direct route to Germany. That's exactly the route we're taking.",
+    "reason_1_title": "Cutting-Edge Technology",
+    "reason_1_desc": "Korean vehicles lead in EV drivetrains, driver assistance systems and connected-car features — often years ahead of European competitors.",
+    "reason_2_title": "Superior Equipment",
+    "reason_2_desc": "What's considered an expensive option in Europe is standard in Korea. Panoramic roof, heated seats, premium sound — included.",
+    "reason_3_title": "Unbeatable Value",
+    "reason_3_desc": "Same quality, lower price. We import directly from South Korea and pass this advantage on to our customers.",
+    "team_eyebrow": "The Team",
+    "team_title": "Two Entrepreneurs. One Vision.",
+    "khodyda_name": "Khodyda Hassan",
+    "khodyda_role": "Managing Director · Entrepreneur",
+    "khodyda_bio": "Khodyda knows how to build and run a business. With Café Jobst in Merzig, he proved that entrepreneurial success is not a matter of age. His passion for quality and people drives Norvyn Motors forward.",
+    "nico_name": "Nico Bäuerle",
+    "nico_role": "Managing Director · E-Commerce & Sales",
+    "nico_bio": "Nico comes from e-commerce and knows exactly how to present and sell products online. With experience in sales and digital marketing, he ensures that Norvyn Motors not only has the best cars — but also gets found.",
+    "mission_eyebrow": "Our Mission",
+    "mission_quote": "We don't import cars. We import a new way of driving.",
+    "cta_title": "Ready for your next vehicle?",
+    "cta_subtitle": "Browse our selection or get in touch with us directly.",
+    "cta_vehicles": "Browse Vehicles",
+    "cta_contact": "Get in Touch"
   }
 }
