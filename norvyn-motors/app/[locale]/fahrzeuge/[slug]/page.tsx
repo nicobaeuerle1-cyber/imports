@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
+import type { ReactNode } from 'react'
 import { generateVehicleMetadata } from '@/lib/seo/metadata'
 import { getVehicleBySlug, getAllVehicleSlugs } from '@/lib/supabase/queries/vehicles'
 import { buildVehicleWhatsAppUrl } from '@/lib/utils/whatsapp'
@@ -213,7 +214,7 @@ export default async function VehicleDetailPage({ params }: PageProps) {
   }
 
   // Stat cards for key specs
-  const statCards: { icon: React.ReactNode; label: string; value: string }[] = []
+  const statCards: { icon: ReactNode; label: string; value: string }[] = []
 
   statCards.push({
     icon: <Calendar className="h-5 w-5 text-gold" strokeWidth={1.5} />,
