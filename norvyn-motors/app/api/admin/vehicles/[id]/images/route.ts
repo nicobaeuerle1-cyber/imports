@@ -39,7 +39,7 @@ export async function POST(
 
   const buffer = await file.arrayBuffer()
 
-  const serviceClient = await createServiceClient()
+  const serviceClient = createServiceClient()
 
   const { error: uploadError } = await serviceClient.storage
     .from('vehicle-images')
@@ -108,7 +108,7 @@ export async function DELETE(
     return NextResponse.json({ error: 'imageId required' }, { status: 400 })
   }
 
-  const serviceClient = await createServiceClient()
+  const serviceClient = createServiceClient()
 
   // Fetch storage path
   const { data: img } = await serviceClient

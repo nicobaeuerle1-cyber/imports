@@ -26,7 +26,7 @@ export async function PUT(
     ...updateData
   } = body
 
-  const serviceClient = await createServiceClient()
+  const serviceClient = createServiceClient()
   const { data, error } = await serviceClient
     .from('vehicles')
     .update(updateData)
@@ -55,7 +55,7 @@ export async function DELETE(
   }
 
   const { id } = await params
-  const serviceClient = await createServiceClient()
+  const serviceClient = createServiceClient()
 
   // Delete images from storage first
   const { data: images } = await serviceClient

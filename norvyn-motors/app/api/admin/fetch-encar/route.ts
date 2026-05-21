@@ -215,7 +215,7 @@ export async function POST(request: NextRequest) {
   }
 
   // Generate stock_id
-  const serviceClient = await createServiceClient()
+  const serviceClient = createServiceClient()
   const stockId = await getNextStockId(serviceClient)
 
   return NextResponse.json({

@@ -107,11 +107,14 @@ function ImportPageInner() {
     const cc = searchParams.get('cc') || ''
     const power = searchParams.get('power') || ''
     const trim = searchParams.get('trim') || ''
+    const featuresParam = searchParams.get('features') || ''
+    const descDeParam = searchParams.get('desc_de') || ''
+    const descEnParam = searchParams.get('desc_en') || ''
 
     if (make || carid) {
       const slug = generateSlug(make, model, year, carid)
-      const descDe = make && model ? `${year} ${make} ${model}${trim ? ' ' + trim : ''} aus Asien bei Norvyn Motors.` : ''
-      const descEn = make && model ? `${year} ${make} ${model}${trim ? ' ' + trim : ''} from Asia at Norvyn Motors.` : ''
+      const descDe = descDeParam || (make && model ? `${year} ${make} ${model}${trim ? ' ' + trim : ''} aus Südkorea bei Norvyn Motors.` : '')
+      const descEn = descEnParam || (make && model ? `${year} ${make} ${model}${trim ? ' ' + trim : ''} from South Korea at Norvyn Motors.` : '')
       setForm(prev => ({
         ...prev,
         make, model, trim, year,
@@ -122,6 +125,7 @@ function ImportPageInner() {
         exterior_color: color,
         engine_cc: cc,
         power_kw: power,
+        features: featuresParam,
         slug,
         description_de: descDe,
         description_en: descEn,

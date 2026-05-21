@@ -10,6 +10,8 @@ interface VehicleCardProps {
   priceOnRequest: string
   statusLabels: Record<string, string>
   categoryLabels: Record<string, string>
+  fuelLabels?: Record<string, string>
+  transmissionLabels?: Record<string, string>
   locale: string
 }
 
@@ -18,6 +20,8 @@ export function VehicleCard({
   priceOnRequest,
   statusLabels,
   categoryLabels,
+  fuelLabels,
+  transmissionLabels,
   locale,
 }: VehicleCardProps) {
   const coverImage = getCoverImage(vehicle)
@@ -81,13 +85,13 @@ export function VehicleCard({
           {vehicle.fuel_type && (
             <>
               <span className="h-3 w-px bg-border" />
-              <span className="capitalize">{vehicle.fuel_type}</span>
+              <span>{fuelLabels?.[vehicle.fuel_type] ?? vehicle.fuel_type}</span>
             </>
           )}
           {vehicle.transmission && (
             <>
               <span className="h-3 w-px bg-border" />
-              <span className="capitalize">{vehicle.transmission}</span>
+              <span>{transmissionLabels?.[vehicle.transmission] ?? vehicle.transmission}</span>
             </>
           )}
         </div>

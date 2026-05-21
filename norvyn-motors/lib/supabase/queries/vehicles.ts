@@ -1,3 +1,12 @@
+// NOTE: Supabase RLS — run the following in the SQL editor to allow public reads:
+// CREATE POLICY "Public can view available vehicles"
+//   ON vehicles FOR SELECT
+//   USING (status = 'available');
+//
+// CREATE POLICY "Public can view vehicle images"
+//   ON vehicle_images FOR SELECT
+//   USING (true);
+
 import { createClient } from '@/lib/supabase/server'
 import type { Vehicle, VehicleWithImages } from '@/types/vehicle'
 import { INVENTORY_PAGE_SIZE } from '@/lib/constants'

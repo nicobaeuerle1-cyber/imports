@@ -11,7 +11,7 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const serviceClient = await createServiceClient()
+  const serviceClient = createServiceClient()
   const { data, error } = await serviceClient
     .from('vehicles')
     .select('*, vehicle_images(*)')
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     ...vehicleData
   } = body
 
-  const serviceClient = await createServiceClient()
+  const serviceClient = createServiceClient()
   const { data, error } = await serviceClient
     .from('vehicles')
     .insert(vehicleData)

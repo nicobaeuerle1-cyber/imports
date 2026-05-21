@@ -87,6 +87,18 @@ export default async function VehiclesPage({ params, searchParams }: PageProps) 
     german_from_korea: t('categories.german_from_korea'),
   }
 
+  const fuelLabels: Record<string, string> = {
+    petrol: t('fuel.petrol'),
+    diesel: t('fuel.diesel'),
+    hybrid: t('fuel.hybrid'),
+    electric: t('fuel.electric'),
+  }
+
+  const transmissionLabels: Record<string, string> = {
+    automatic: t('transmission.automatic'),
+    manual: t('transmission.manual'),
+  }
+
   function buildPageHref(p: number) {
     const params = new URLSearchParams()
     if (category) params.set('category', category)
@@ -147,6 +159,8 @@ export default async function VehiclesPage({ params, searchParams }: PageProps) 
               priceOnRequest={t('price_on_request')}
               statusLabels={statusLabels}
               categoryLabels={categoryLabels}
+              fuelLabels={fuelLabels}
+              transmissionLabels={transmissionLabels}
               locale={locale}
             />
           ))}
