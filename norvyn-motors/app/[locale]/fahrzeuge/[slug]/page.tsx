@@ -142,7 +142,7 @@ export default async function VehicleDetailPage({ params }: PageProps) {
     description = generateEnhancedDescription(vehicle)
   }
 
-  const sortedImages = [...vehicle.vehicle_images].sort(
+  const sortedImages = [...(vehicle.vehicle_images ?? [])].sort(
     (a, b) => a.position - b.position,
   )
 
