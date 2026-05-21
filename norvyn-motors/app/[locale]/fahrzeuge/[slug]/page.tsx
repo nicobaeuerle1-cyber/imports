@@ -8,6 +8,8 @@ import { ImageGallery } from '@/components/vehicles/image-gallery'
 import { InquiryForm } from '@/components/vehicles/inquiry-form'
 import { ArrowLeft, CheckCircle, Calendar, Gauge, Zap, Settings2, Fuel, Cog } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>
 }
@@ -57,8 +59,8 @@ export default async function VehicleDetailPage({ params }: PageProps) {
   const vehicle = await getVehicleBySlug(slug)
   if (!vehicle) notFound()
 
-  const t = await getTranslations('vehicles')
-  const tInquiry = await getTranslations('inquiry')
+  const t = await getTranslations({ locale, namespace: 'vehicles' })
+  const tInquiry = await getTranslations({ locale, namespace: 'inquiry' })
 
   const fuelLabels: Record<string, string> = {
     petrol: t('fuel.petrol'), diesel: t('fuel.diesel'),
