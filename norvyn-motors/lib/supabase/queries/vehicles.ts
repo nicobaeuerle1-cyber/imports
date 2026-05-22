@@ -84,29 +84,37 @@ export async function getFeaturedVehicles(): Promise<VehicleWithImages[]> {
 export async function getVehicleBySlug(
   slug: string,
 ): Promise<VehicleWithImages | null> {
-  const supabase = await createClient()
+  try {
+    const supabase = await createClient()
 
-  const { data, error } = await supabase
-    .from('vehicles')
-    .select('*, vehicle_images(*)')
-    .eq('slug', slug)
-    .eq('status', 'available')
-    .single()
+    const { data, error } = await supabase
+      .from('vehicles')
+      .select('*, vehicle_images(*)')
+      .eq('slug', slug)
+      .eq('status', 'available')
+      .single()
 
-  if (error) return null
+    if (error) return null
 
-  return data as VehicleWithImages
+    return data as VehicleWithImages
+  } catch {
+    return null
+  }
 }
 
 export async function getAllVehicleSlugs(): Promise<string[]> {
-  const supabase = await createClient()
+  try {
+    const supabase = await createClient()
 
-  const { data } = await supabase
-    .from('vehicles')
-    .select('slug')
-    .eq('status', 'available')
+    const { data } = await supabase
+      .from('vehicles')
+      .select('slug')
+      .eq('status', 'available')
 
-  return data?.map((v) => v.slug) ?? []
+    return data?.map((v) => v.slug) ?? []
+  } catch {
+    return []
+  }
 }
 
 // Admin — uses service role through route handlers
