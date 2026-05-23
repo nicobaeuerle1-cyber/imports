@@ -146,13 +146,13 @@ export default async function HomePage({
 
           <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center animate-fade-up [animation-delay:200ms]">
             <Button asChild size="lg">
-              <Link href={vehiclesPath as '/fahrzeuge'}>
+              <Link href="/kontakt">
                 {t('hero.cta_primary')}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/kontakt">{t('hero.cta_secondary')}</Link>
+              <Link href={vehiclesPath as '/fahrzeuge'}>{t('hero.cta_secondary')}</Link>
             </Button>
           </div>
         </div>
