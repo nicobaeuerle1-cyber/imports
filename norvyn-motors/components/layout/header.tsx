@@ -29,6 +29,7 @@ export function Header() {
   const vehiclesPath = locale === 'de' ? '/fahrzeuge' : '/vehicles'
   const aboutPath = locale === 'de' ? '/ueber-uns' : '/about'
   const contactPath = '/kontakt'
+  const isHomePage = pathname === `/${locale}` || pathname === '/'
 
   const navLinks = [
     { href: vehiclesPath, label: t('vehicles') },
@@ -70,9 +71,11 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden items-center gap-4 md:flex">
-            <Button asChild variant="outline" size="sm">
-              <Link href={contactPath}>{t('cta')}</Link>
-            </Button>
+            {!isHomePage && (
+              <Button asChild variant="outline" size="sm">
+                <Link href={contactPath}>{t('cta')}</Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile hamburger */}
@@ -130,11 +133,13 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="px-6 pb-12">
-          <Button asChild className="w-full" size="lg">
-            <Link href={contactPath}>{t('cta')}</Link>
-          </Button>
-        </div>
+        {!isHomePage && (
+          <div className="px-6 pb-12">
+            <Button asChild className="w-full" size="lg">
+              <Link href={contactPath}>{t('cta')}</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </>
   )
