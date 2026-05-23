@@ -4,6 +4,8 @@ import { GeistSans } from 'geist/font/sans'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import Script from 'next/script'
+import { Analytics } from '@vercel/analytics/next'
 import { routing } from '@/lib/i18n/config'
 import { siteConfig } from '@/lib/seo/site-config'
 import { Header } from '@/components/layout/header'
@@ -75,6 +77,12 @@ export default async function LocaleLayout({
           <Footer />
           <WhatsAppFloat locale={locale as 'de' | 'en'} />
         </NextIntlClientProvider>
+        <Analytics />
+        {process.env.NEXT_PUBLIC_CLARITY_ID && (
+          <Script id="clarity" strategy="afterInteractive">
+            {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${process.env.NEXT_PUBLIC_CLARITY_ID}");`}
+          </Script>
+        )}
       </body>
     </html>
   )
