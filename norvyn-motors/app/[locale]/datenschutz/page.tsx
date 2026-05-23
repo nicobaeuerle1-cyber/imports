@@ -31,59 +31,74 @@ export default async function DatenschutzPage({
         Datenschutzerklärung
       </h1>
 
-      <div className="space-y-8 font-sans text-sm leading-relaxed text-muted">
-        <section>
-          <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-subtle mb-4">
-            1. Datenschutz auf einen Blick
-          </h2>
-          <p>
-            Die folgenden Hinweise geben einen einfachen Überblick darüber, was
-            mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website
-            besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie
-            persönlich identifiziert werden können.
-          </p>
-        </section>
+      <div className="space-y-10 font-sans text-sm leading-relaxed text-muted">
 
         <section>
           <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-subtle mb-4">
-            2. Verantwortliche Stelle
+            1. Verantwortliche Stelle
           </h2>
           <p>
-            {siteConfig.company.name}
+            Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
+            <span className="text-foreground">{siteConfig.company.name}</span>
             {siteConfig.company.address && <>, {siteConfig.company.address}</>}
             {siteConfig.company.city && <>, {siteConfig.company.city}</>}
-            {siteConfig.company.email && (
-              <>, E-Mail: {siteConfig.company.email}</>
-            )}
+            {siteConfig.company.email && <><br />E-Mail: {siteConfig.company.email}</>}
           </p>
         </section>
 
         <section>
           <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-subtle mb-4">
-            3. Datenerfassung auf dieser Website
+            2. Kontaktformular
           </h2>
           <p>
-            Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden
-            Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort
-            angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den
-            Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir
-            nicht ohne Ihre Einwilligung weiter. Rechtsgrundlage: Art. 6 Abs. 1
-            lit. b DSGVO.
+            Wenn Sie uns über das Kontaktformular kontaktieren, werden Ihre Angaben (Name, E-Mail-Adresse, Telefonnummer, Nachricht) zur Bearbeitung Ihrer Anfrage gespeichert. Diese Daten werden nicht ohne Ihre Einwilligung an Dritte weitergegeben. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Die Daten werden gelöscht, sobald sie für die Zweckerreichung nicht mehr erforderlich sind.
           </p>
         </section>
 
         <section>
           <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-subtle mb-4">
-            4. Ihre Rechte
+            3. Vercel Analytics
           </h2>
           <p>
-            Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft,
-            Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu
-            erhalten. Sie haben außerdem ein Recht, die Berichtigung oder
-            Löschung dieser Daten zu verlangen. Wenden Sie sich dazu an uns
-            unter der oben genannten E-Mail-Adresse.
+            Diese Website nutzt Vercel Analytics, einen Analysedienst der Vercel Inc., 340 Pine Street Suite 701, San Francisco, CA 94104, USA. Vercel Analytics erfasst anonymisierte Nutzungsdaten (aufgerufene Seiten, Herkunftsland, verwendeter Browser) ohne Cookies und ohne persönlich identifizierbare Informationen. Es werden keine IP-Adressen gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Websiteoptimierung). Weitere Informationen: <a href="https://vercel.com/docs/analytics/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-gold underline underline-offset-2">vercel.com/docs/analytics/privacy-policy</a>
           </p>
         </section>
+
+        <section>
+          <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-subtle mb-4">
+            4. Microsoft Clarity
+          </h2>
+          <p>
+            Mit Ihrer Einwilligung nutzen wir Microsoft Clarity, einen Analysedienst der Microsoft Corporation, One Microsoft Way, Redmond, WA 98052, USA. Clarity zeichnet anonymisierte Sitzungsaufzeichnungen auf und erstellt Heatmaps, um das Nutzerverhalten zu verstehen und die Website zu verbessern. Dabei können Mausbewegungen, Klicks und Scrollverhalten erfasst werden. Sensible Inhalte werden von Clarity automatisch maskiert.
+          </p>
+          <p className="mt-3">
+            Clarity wird nur nach Ihrer ausdrücklichen Einwilligung (Cookie-Banner) aktiviert. Ihre Einwilligung können Sie jederzeit widerrufen, indem Sie Ihren Browser-Speicher löschen (localStorage: <code className="text-xs bg-surface px-1 py-0.5">cookie_consent</code>). Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO. Weitere Informationen: <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="text-gold underline underline-offset-2">privacy.microsoft.com</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-subtle mb-4">
+            5. Hosting & Infrastruktur
+          </h2>
+          <p>
+            Diese Website wird auf der Infrastruktur von Vercel Inc. gehostet. Beim Aufruf der Website werden automatisch technische Daten (IP-Adresse, Zeitpunkt, Browser) in Server-Logs erfasst. Diese Daten werden ausschließlich zur Sicherstellung des Betriebs genutzt und nach spätestens 7 Tagen gelöscht. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-sans text-xs font-medium uppercase tracking-widest text-subtle mb-4">
+            6. Ihre Rechte
+          </h2>
+          <p>
+            Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit Ihrer personenbezogenen Daten. Sie haben außerdem das Recht, eine erteilte Einwilligung jederzeit zu widerrufen sowie Beschwerde bei einer Datenschutzbehörde einzulegen (zuständig: Landesbeauftragte/r für Datenschutz in Ihrem Bundesland).
+          </p>
+          {siteConfig.company.email && (
+            <p className="mt-3">
+              Wenden Sie sich für Anfragen an: <a href={`mailto:${siteConfig.company.email}`} className="text-gold underline underline-offset-2">{siteConfig.company.email}</a>
+            </p>
+          )}
+        </section>
+
       </div>
     </div>
   )
