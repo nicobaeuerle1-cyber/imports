@@ -41,7 +41,7 @@ export function ImageGallery({ images, vehicleName }: ImageGalleryProps) {
           alt={images[active].alt_text ?? vehicleName}
           fill
           priority
-          className="object-cover"
+          className="object-contain"
           sizes="(max-width: 768px) 100vw, 60vw"
         />
 
@@ -91,7 +91,7 @@ export function ImageGallery({ images, vehicleName }: ImageGalleryProps) {
                 src={img.url}
                 alt={img.alt_text ?? `${vehicleName} ${i + 1}`}
                 fill
-                className="object-cover"
+                className="object-contain"
                 sizes="96px"
               />
             </button>
