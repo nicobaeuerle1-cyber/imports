@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { getVehicleBySlug, getAllVehicleSlugs } from '@/lib/supabase/queries/vehicles'
 import { buildVehicleWhatsAppUrl } from '@/lib/utils/whatsapp'
-import { formatMileage, formatPower, formatEngineDisplacement } from '@/lib/utils/format'
+import { formatMileage, formatPower, formatEngineDisplacement, formatPrice } from '@/lib/utils/format'
 import { Link } from '@/lib/i18n/navigation'
 import { ImageGallery } from '@/components/vehicles/image-gallery'
 import { InquiryForm } from '@/components/vehicles/inquiry-form'
@@ -122,7 +122,11 @@ export default async function VehicleDetailPage({ params }: PageProps) {
           <div className="lg:hidden">
             <p className="font-sans text-xs text-muted uppercase tracking-widest mb-1">{vehicle.year} · {vehicle.stock_id}</p>
             <h1 className="font-display text-3xl text-foreground">{vehicle.make} {vehicle.model}{vehicle.trim && <span className="text-muted"> {vehicle.trim}</span>}</h1>
-            <p className="font-display text-2xl text-gold mt-3">{t('price_on_request')}</p>
+            <p className="font-display text-2xl text-gold mt-3">
+              {vehicle.price_visible && vehicle.price_eur != null
+                ? formatPrice(vehicle.price_eur, locale === 'de' ? 'de-DE' : 'en-GB')
+                : t('price_on_request')}
+            </p>
           </div>
 
           <ImageGallery images={sortedImages} vehicleName={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} />
@@ -173,7 +177,11 @@ export default async function VehicleDetailPage({ params }: PageProps) {
               {vehicle.trim && <span className="text-muted"> {vehicle.trim}</span>}
             </h1>
             <div className="mt-5 pt-5 border-t border-border">
-              <p className="font-display text-3xl text-gold">{t('price_on_request')}</p>
+              <p className="font-display text-3xl text-gold">
+                {vehicle.price_visible && vehicle.price_eur != null
+                  ? formatPrice(vehicle.price_eur, locale === 'de' ? 'de-DE' : 'en-GB')
+                  : t('price_on_request')}
+              </p>
             </div>
           </div>
 
