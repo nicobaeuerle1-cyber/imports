@@ -157,6 +157,7 @@ export default async function VehiclesPage({ params, searchParams }: PageProps) 
               key={vehicle.id}
               vehicle={vehicle}
               priceOnRequest={t('price_on_request')}
+              inquireLabel={t('cta.inquire')}
               statusLabels={statusLabels}
               categoryLabels={categoryLabels}
               fuelLabels={fuelLabels}

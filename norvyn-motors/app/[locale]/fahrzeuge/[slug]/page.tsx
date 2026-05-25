@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
-import { getVehicleBySlug, getAllVehicleSlugs } from '@/lib/supabase/queries/vehicles'
+import { getVehicleBySlug, getAllVehicleSlugs, getSimilarVehicles } from '@/lib/supabase/queries/vehicles'
 import { buildVehicleWhatsAppUrl } from '@/lib/utils/whatsapp'
 import { formatMileage, formatPower, formatEngineDisplacement, formatPrice } from '@/lib/utils/format'
 import { Link } from '@/lib/i18n/navigation'
 import { ImageGallery } from '@/components/vehicles/image-gallery'
 import { InquiryForm } from '@/components/vehicles/inquiry-form'
-import { ArrowLeft, CheckCircle, Calendar, Gauge, Zap, Settings2, Fuel, Cog } from 'lucide-react'
+import { VehicleCard } from '@/components/vehicles/vehicle-card'
+import { ArrowLeft, CheckCircle, Calendar, Gauge, Zap, Settings2, Fuel, Cog, MessageCircle } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -58,6 +59,8 @@ export default async function VehicleDetailPage({ params }: PageProps) {
 
   const vehicle = await getVehicleBySlug(slug)
   if (!vehicle) notFound()
+
+  const similarVehicles = await getSimilarVehicles(vehicle.category, slug)
 
   const t = await getTranslations({ locale, namespace: 'vehicles' })
   const tInquiry = await getTranslations({ locale, namespace: 'inquiry' })
@@ -199,13 +202,63 @@ export default async function VehicleDetailPage({ params }: PageProps) {
             </div>
           )}
 
+          {/* WhatsApp CTA */}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-3 border border-[#25D366]/40 bg-[#25D366]/10 py-4 font-sans text-sm font-medium text-[#25D366] transition-colors hover:bg-[#25D366]/20"
+          >
+            <MessageCircle className="h-5 w-5" />
+            {t('cta.whatsapp')}
+          </a>
+
           {/* Inquiry */}
-          <div className="border border-border bg-surface p-6">
+          <div id="anfragen" className="border border-border bg-surface p-6">
             <h2 className="font-display text-2xl text-foreground mb-6">{t('detail.inquiry_title')}</h2>
             <InquiryForm vehicleInfo={vehicleInfo} whatsappUrl={whatsappUrl} locale={locale as 'de' | 'en'} translations={inquiryTranslations} />
           </div>
         </div>
       </div>
+
+      {/* Similar vehicles */}
+      {similarVehicles.length > 0 && (
+        <div className="mt-20 border-t border-border pt-16">
+          <p className="eyebrow mb-3">{locale === 'de' ? 'Weitere Fahrzeuge' : 'More Vehicles'}</p>
+          <h2 className="font-display text-3xl text-foreground mb-10">
+            {locale === 'de' ? 'Das könnte Sie auch interessieren' : 'You might also like'}
+          </h2>
+          <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {similarVehicles.map((v) => (
+              <VehicleCard
+                key={v.id}
+                vehicle={v}
+                priceOnRequest={t('price_on_request')}
+                inquireLabel={t('cta.inquire')}
+                statusLabels={{
+                  available: t('status.available'),
+                  reserved: t('status.reserved'),
+                  sold: t('status.sold'),
+                  draft: t('status.draft'),
+                }}
+                categoryLabels={{
+                  performance: t('categories.performance'),
+                  luxury: t('categories.luxury'),
+                  german_from_korea: t('categories.german_from_korea'),
+                }}
+                fuelLabels={{
+                  petrol: t('fuel.petrol'), diesel: t('fuel.diesel'),
+                  hybrid: t('fuel.hybrid'), electric: t('fuel.electric'),
+                }}
+                transmissionLabels={{
+                  automatic: t('transmission.automatic'), manual: t('transmission.manual'),
+                }}
+                locale={locale}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

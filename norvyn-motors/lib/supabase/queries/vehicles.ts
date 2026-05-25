@@ -117,6 +117,26 @@ export async function getAllVehicleSlugs(): Promise<string[]> {
   }
 }
 
+export async function getSimilarVehicles(
+  category: string,
+  excludeSlug: string,
+  limit = 3,
+): Promise<VehicleWithImages[]> {
+  try {
+    const supabase = await createClient()
+    const { data } = await supabase
+      .from('vehicles')
+      .select('*, vehicle_images(*)')
+      .eq('status', 'available')
+      .eq('category', category)
+      .neq('slug', excludeSlug)
+      .limit(limit)
+    return (data as VehicleWithImages[]) ?? []
+  } catch {
+    return []
+  }
+}
+
 // Admin — uses service role through route handlers
 export async function getAllVehiclesAdmin(
   supabase: Awaited<ReturnType<typeof createClient>>,
