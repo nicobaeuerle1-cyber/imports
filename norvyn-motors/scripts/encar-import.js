@@ -255,7 +255,9 @@ async function main() {
     console.log(`\n🔍  ${target.maker} ${target.model}`)
     try {
       const q = `(And.(And.Hidden.N._.CarType.Y.)_.Manufacturer.${target.maker}._.ModelGroup.${target.model}.)`
-      const url = `https://api.encar.com/search/car/list/general?count=true&q=${encodeURIComponent(q)}&sr=%7CModifiedDate%7C0%7C${target.limit * 3}`
+      // Encar API requires parentheses unencoded — only encode non-ASCII (Korean) characters
+      const qEncoded = q.replace(/[^\x00-\x7F]/g, c => encodeURIComponent(c))
+      const url = `https://api.encar.com/search/car/list/general?count=true&q=${qEncoded}&sr=%7CModifiedDate%7C0%7C${target.limit * 3}`
 
       const { data, status, snippet } = await page.evaluate(async (apiUrl) => {
         try {
