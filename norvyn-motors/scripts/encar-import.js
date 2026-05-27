@@ -112,27 +112,59 @@ async function uploadImage(supabase, url, vehicleId, pos) {
 
 // ─── FAHRZEUG EINFÜGEN ────────────────────────────────────────────────────────
 
-async function insertVehicle(supabase, car, target, num) {
-  const make  = MAKER_DE[car.Maker] ?? car.Maker
-  const model = MODEL_DE[car.Model] ?? car.Model
-  const trim  = car.Badge ?? null
-  const stock = `NM${String(num).padStart(3, '0')}`
-  const slug  = toSlug(make, model, car.Year)
+async function getCarPhotos(page, carId) {
+  try {
+    const url = `https://api.encar.com/cars/${carId}`
+    const { data } = await page.evaluate(async (apiUrl) => {
+      try {
+        const r = await fetch(apiUrl, {
+          headers: { 'Referer': 'https://www.encar.com/', 'Accept': 'application/json' }
+        })
+        const text = await r.text()
+        let parsed = null
+        try { parsed = JSON.parse(text) } catch {}
+        return { data: parsed }
+      } catch { return { data: null } }
+    }, url)
+    // Photo paths are typically in data.Photos or data.Photo array
+    const photos = data?.Photos ?? data?.Photo ?? []
+    return Array.isArray(photos) ? photos : [photos]
+  } catch { return [] }
+}
 
-  const descDE = `Der ${car.Year} ${make} ${model}${trim ? ' ' + trim : ''} aus Südkorea überzeugt mit ${car.Mileage?.toLocaleString('de-DE')} km Laufleistung und einer Serienausstattung, die in Deutschland nur gegen erhebliche Aufpreise erhältlich wäre. Geprüft und für den deutschen Markt aufbereitet von Norvyn Motors.`
-  const descEN = `The ${car.Year} ${make} ${model}${trim ? ' ' + trim : ''} from South Korea impresses with ${car.Mileage?.toLocaleString('en-GB')} km and a standard equipment level that would cost significantly more at a German dealer. Verified and prepared for the German market by Norvyn Motors.`
+async function insertVehicle(supabase, page, car, target, num) {
+  // Encar API field names (search results use these names)
+  const makerKr  = car.Manufacturer ?? car.Maker ?? target.maker
+  const modelKr  = car.ModelGroup   ?? car.Model  ?? target.model
+  const year     = car.FormYear     ?? car.Year   ?? new Date().getFullYear()
+  const mileage  = car.Mileage      ?? car.Kilometer ?? null
+  const fuelKr   = car.FuelType     ?? car.Fuel   ?? ''
+  const gearKr   = car.GearType     ?? car.Gearbox ?? ''
+  const colorKr  = car.Color        ?? ''
+  const price    = car.Price        ?? null
+  const carId    = car.Id           ?? car.CarId  ?? null
+  const trim     = car.Badge        ?? car.BadgeDetail ?? null
+
+  const make  = MAKER_DE[makerKr] ?? makerKr
+  const model = MODEL_DE[modelKr] ?? modelKr
+  const stock = `NM${String(num).padStart(3, '0')}`
+  const slug  = toSlug(make, model, year)
+
+  const mileageStr = mileage != null ? mileage.toLocaleString('de-DE') : '–'
+  const descDE = `Der ${year} ${make} ${model}${trim ? ' ' + trim : ''} aus Südkorea überzeugt mit ${mileageStr} km Laufleistung und einer Serienausstattung, die in Deutschland nur gegen erhebliche Aufpreise erhältlich wäre. Geprüft und für den deutschen Markt aufbereitet von Norvyn Motors.`
+  const descEN = `The ${year} ${make} ${model}${trim ? ' ' + trim : ''} from South Korea impresses with ${mileage != null ? mileage.toLocaleString('en-GB') : '–'} km and a standard equipment level that would cost significantly more at a German dealer. Verified and prepared for the German market by Norvyn Motors.`
 
   const { data: vehicle, error } = await supabase
     .from('vehicles')
     .insert({
       stock_id: stock, slug, status: 'available', category: target.category,
-      make, model, trim, year: car.Year,
-      mileage_km: car.Mileage ?? null,
-      fuel_type: FUEL_DE[car.Fuel] ?? 'petrol',
-      transmission: TRANS_DE[car.Gearbox] ?? 'automatic',
-      exterior_color: COLOR_DE[car.Color] ?? car.Color ?? null,
+      make, model, trim, year,
+      mileage_km: mileage,
+      fuel_type: FUEL_DE[fuelKr] ?? 'petrol',
+      transmission: TRANS_DE[gearKr] ?? 'automatic',
+      exterior_color: COLOR_DE[colorKr] ?? (colorKr || null),
       origin_country: 'Südkorea',
-      price_eur: car.Price ? toEur(car.Price) : null,
+      price_eur: price ? toEur(price) : null,
       price_visible: false,
       description_de: descDE,
       description_en: descEN,
@@ -149,11 +181,24 @@ async function insertVehicle(supabase, car, target, num) {
     return false
   }
 
-  // Bilder hochladen (max. 8 pro Fahrzeug)
-  const photos = (car.Photos ?? []).slice(0, 8)
+  // Hauptbild aus Suchergebnis + weitere Bilder vom Detail-Endpunkt
+  let photoList = []
+  // Search result often has a single Photo string
+  if (car.Photo) photoList.push(car.Photo)
+  if (car.Photos) photoList.push(...(Array.isArray(car.Photos) ? car.Photos : [car.Photos]))
+  // Fetch detail page for more photos if we have carId
+  if (carId && photoList.length < 3) {
+    const extraPhotos = await getCarPhotos(page, carId)
+    photoList.push(...extraPhotos)
+  }
+  photoList = [...new Set(photoList)].slice(0, 8)
+
   let uploaded = 0
-  for (let i = 0; i < photos.length; i++) {
-    const imgUrl = `https://ci.encar.com/${photos[i].path ?? photos[i]}`
+  for (let i = 0; i < photoList.length; i++) {
+    const raw = photoList[i]
+    const path = typeof raw === 'object' ? (raw.path ?? raw.Path ?? '') : raw
+    if (!path) continue
+    const imgUrl = path.startsWith('http') ? path : `https://ci.encar.com/${path}`
     const result = await uploadImage(supabase, imgUrl, vehicle.id, i)
     if (result) {
       await supabase.from('vehicle_images').insert({
@@ -165,7 +210,7 @@ async function insertVehicle(supabase, car, target, num) {
     }
   }
 
-  console.log(`  ✅  ${stock}: ${car.Year} ${make} ${model}${trim ? ' ' + trim : ''} — ${uploaded} Fotos`)
+  console.log(`  ✅  ${stock}: ${year} ${make} ${model}${trim ? ' ' + trim : ''} — ${uploaded} Fotos`)
   return true
 }
 
@@ -234,8 +279,13 @@ async function main() {
         continue
       }
 
+      // Debug: log field names of first result once
+      if (total === 0 && results[0]) {
+        console.log('  🔍 Felder im ersten Ergebnis:', Object.keys(results[0]).join(', '))
+      }
+
       for (const car of results.slice(0, target.limit)) {
-        const ok = await insertVehicle(supabase, car, target, num)
+        const ok = await insertVehicle(supabase, page, car, target, num)
         if (ok) { num++; total++ }
         await page.waitForTimeout(800)
       }
