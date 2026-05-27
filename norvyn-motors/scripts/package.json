@@ -1,0 +1,9 @@
+{
+  "name": "norvyn-scripts",
+  "version": "1.0.0",
+  "description": "Norvyn Motors Import Scripts",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.0.0",
+    "playwright": "^1.40.0"
+  }
+}
