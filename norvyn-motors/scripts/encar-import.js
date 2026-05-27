@@ -200,21 +200,41 @@ async function main() {
   for (const target of TARGETS) {
     console.log(`\n🔍  ${target.maker} ${target.model}`)
     try {
-      const q = `(And.Hidden.N._.SaleStatus.Y._.Maker.${encodeURIComponent(target.maker)}._.ModelGroup.${encodeURIComponent(target.model)}.)`
-      const url = `https://api.encar.com/search/car/list/premium?count=true&q=${q}&sr=%7CRegDate%7C0%7C${target.limit * 3}`
+      const q = `(And.Hidden.N._.SaleStatus.Y._.Maker.${target.maker}._.ModelGroup.${target.model}.)`
+      const url = `https://api.encar.com/search/car/list/premium?count=true&q=${encodeURIComponent(q)}&sr=%7CRegDate%7C0%7C${target.limit * 3}`
 
-      const data = await page.evaluate(async (apiUrl) => {
-        const r = await fetch(apiUrl, { headers: { Referer: 'https://www.encar.com/' } })
-        if (!r.ok) return null
-        return r.json()
+      const { data, status, snippet } = await page.evaluate(async (apiUrl) => {
+        try {
+          const r = await fetch(apiUrl, {
+            headers: {
+              'Referer': 'https://www.encar.com/',
+              'Accept': 'application/json',
+              'Accept-Language': 'ko-KR,ko;q=0.9',
+            }
+          })
+          const text = await r.text()
+          let parsed = null
+          try { parsed = JSON.parse(text) } catch {}
+          return { status: r.status, snippet: text.slice(0, 200), data: parsed }
+        } catch (e) {
+          return { status: 0, snippet: e.message, data: null }
+        }
       }, url)
 
-      if (!data?.SearchResults?.length) {
-        console.log('  ⚠️  Keine Ergebnisse')
+      if (status !== 200 || !data) {
+        console.log(`  ⚠️  API Status ${status}: ${snippet}`)
         continue
       }
 
-      for (const car of data.SearchResults.slice(0, target.limit)) {
+      // Try different response field names
+      const results = data.SearchResults ?? data.Cars ?? data.Items ?? data.results ?? []
+
+      if (!results.length) {
+        console.log(`  ⚠️  Keine Ergebnisse (Keys: ${Object.keys(data).join(', ')})`)
+        continue
+      }
+
+      for (const car of results.slice(0, target.limit)) {
         const ok = await insertVehicle(supabase, car, target, num)
         if (ok) { num++; total++ }
         await page.waitForTimeout(800)
