@@ -200,8 +200,8 @@ async function main() {
   for (const target of TARGETS) {
     console.log(`\n🔍  ${target.maker} ${target.model}`)
     try {
-      const q = `(And.Hidden.N._.SaleStatus.Y._.Maker.${target.maker}._.ModelGroup.${target.model}.)`
-      const url = `https://api.encar.com/search/car/list/premium?count=true&q=${encodeURIComponent(q)}&sr=%7CRegDate%7C0%7C${target.limit * 3}`
+      const q = `(And.(And.Hidden.N._.CarType.Y.)_.Maker.${target.maker}._.ModelGroup.${target.model}.)`
+      const url = `https://api.encar.com/search/car/list/general?count=true&q=${encodeURIComponent(q)}&sr=%7CModifiedDate%7C0%7C${target.limit * 3}`
 
       const { data, status, snippet } = await page.evaluate(async (apiUrl) => {
         try {
