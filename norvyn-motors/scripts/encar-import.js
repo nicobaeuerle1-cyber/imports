@@ -114,21 +114,29 @@ async function uploadImage(supabase, url, vehicleId, pos) {
 
 async function getCarPhotos(page, carId) {
   try {
+    // Try the car detail endpoint
     const url = `https://api.encar.com/cars/${carId}`
     const { data } = await page.evaluate(async (apiUrl) => {
       try {
         const r = await fetch(apiUrl, {
-          headers: { 'Referer': 'https://www.encar.com/', 'Accept': 'application/json' }
+          headers: {
+            'Referer': 'https://www.encar.com/',
+            'Accept': 'application/json',
+            'Accept-Language': 'ko-KR,ko;q=0.9',
+          }
         })
+        if (!r.ok) return { data: null }
         const text = await r.text()
         let parsed = null
         try { parsed = JSON.parse(text) } catch {}
         return { data: parsed }
       } catch { return { data: null } }
     }, url)
-    // Photo paths are typically in data.Photos or data.Photo array
-    const photos = data?.Photos ?? data?.Photo ?? []
-    return Array.isArray(photos) ? photos : [photos]
+    if (!data) return []
+    // Detail API: photos may be in different locations
+    const raw = data?.Photos ?? data?.Photo ?? data?.images ?? data?.Images ?? []
+    const photos = Array.isArray(raw) ? raw : (raw ? [raw] : [])
+    return photos.map(p => typeof p === 'string' ? p : (p?.path ?? p?.Path ?? p?.url ?? '')).filter(Boolean)
   } catch { return [] }
 }
 
@@ -181,17 +189,18 @@ async function insertVehicle(supabase, page, car, target, num) {
     return false
   }
 
-  // Hauptbild aus Suchergebnis + weitere Bilder vom Detail-Endpunkt
+  // Bilder: Search-Ergebnis hat "Photo" (String-Pfad), Detail-API hat mehr
   let photoList = []
-  // Search result often has a single Photo string
-  if (car.Photo) photoList.push(car.Photo)
+  // Main photo from search result
+  if (typeof car.Photo === 'string' && car.Photo) photoList.push(car.Photo)
+  if (Array.isArray(car.Photo)) photoList.push(...car.Photo)
   if (car.Photos) photoList.push(...(Array.isArray(car.Photos) ? car.Photos : [car.Photos]))
-  // Fetch detail page for more photos if we have carId
-  if (carId && photoList.length < 3) {
+  // Fetch more photos from detail endpoint
+  if (carId) {
     const extraPhotos = await getCarPhotos(page, carId)
     photoList.push(...extraPhotos)
   }
-  photoList = [...new Set(photoList)].slice(0, 8)
+  photoList = [...new Set(photoList)].filter(Boolean).slice(0, 8)
 
   let uploaded = 0
   for (let i = 0; i < photoList.length; i++) {
@@ -245,7 +254,7 @@ async function main() {
   for (const target of TARGETS) {
     console.log(`\n🔍  ${target.maker} ${target.model}`)
     try {
-      const q = `(And.(And.Hidden.N._.CarType.Y.)_.Maker.${target.maker}._.ModelGroup.${target.model}.)`
+      const q = `(And.(And.Hidden.N._.CarType.Y.)_.Manufacturer.${target.maker}._.ModelGroup.${target.model}.)`
       const url = `https://api.encar.com/search/car/list/general?count=true&q=${encodeURIComponent(q)}&sr=%7CModifiedDate%7C0%7C${target.limit * 3}`
 
       const { data, status, snippet } = await page.evaluate(async (apiUrl) => {
@@ -279,9 +288,18 @@ async function main() {
         continue
       }
 
-      // Debug: log field names of first result once
+      // Debug: log first result structure once
       if (total === 0 && results[0]) {
-        console.log('  🔍 Felder im ersten Ergebnis:', Object.keys(results[0]).join(', '))
+        const sample = results[0]
+        console.log('  🔍 Felder:', Object.keys(sample).join(', '))
+        console.log('  🔍 Sample:', JSON.stringify({
+          Id: sample.Id, Manufacturer: sample.Manufacturer, ModelGroup: sample.ModelGroup,
+          Badge: sample.Badge, FormYear: sample.FormYear, Year: sample.Year,
+          Mileage: sample.Mileage, FuelType: sample.FuelType, GearType: sample.GearType,
+          Color: sample.Color, Price: sample.Price,
+          Photo: typeof sample.Photo === 'string' ? sample.Photo.slice(0, 80) : sample.Photo,
+          Photos: sample.Photos,
+        }, null, 2))
       }
 
       for (const car of results.slice(0, target.limit)) {
