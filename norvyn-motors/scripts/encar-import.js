@@ -16,8 +16,8 @@
 
 // ─── KONFIGURATION — HIER AUSFÜLLEN ──────────────────────────────────────────
 
-const SUPABASE_URL = 'https://gbbpnhitpqfoujfcsdty.supabase.co/rest/v1/'          // z.B. https://xxx.supabase.co
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdiYnBuaGl0cHFmb3VqZmNzZHR5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3OTE4MDIwOSwiZXhwIjoyMDk0NzU2MjA5fQ.6YB5zNrvh1WodNhkqBhZ2YQly3CZza7e_n-PecRV44M'        // Supabase → Settings → API → service_role
+const SUPABASE_URL = 'https://gbbpnhitpqfoujfcsdty.supabase.co'  // KEIN /rest/v1/ am Ende!
+const SUPABASE_KEY = 'NEUEN_SERVICE_ROLE_KEY_EINTRAGEN'            // Supabase → Settings → API → service_role (neu generieren!)
 
 const START_NR = 3   // Nächste freie NM-Nummer (NM001 + NM002 bereits vergeben)
 
