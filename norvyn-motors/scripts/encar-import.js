@@ -189,12 +189,9 @@ async function insertVehicle(supabase, page, car, target, num) {
     return false
   }
 
-  // Bilder: Search-Ergebnis hat "Photo" (String-Pfad), Detail-API hat mehr
+  // Photos[].location enthält die echten Bildpfade (Photo ist nur ein Präfix)
   let photoList = []
-  // Main photo from search result
-  if (typeof car.Photo === 'string' && car.Photo) photoList.push(car.Photo)
-  if (Array.isArray(car.Photo)) photoList.push(...car.Photo)
-  if (car.Photos) photoList.push(...(Array.isArray(car.Photos) ? car.Photos : [car.Photos]))
+  if (Array.isArray(car.Photos)) photoList.push(...car.Photos)
   // Fetch more photos from detail endpoint
   if (carId) {
     const extraPhotos = await getCarPhotos(page, carId)
@@ -205,7 +202,7 @@ async function insertVehicle(supabase, page, car, target, num) {
   let uploaded = 0
   for (let i = 0; i < photoList.length; i++) {
     const raw = photoList[i]
-    const path = typeof raw === 'object' ? (raw.path ?? raw.Path ?? '') : raw
+    const path = typeof raw === 'object' ? (raw.location ?? raw.path ?? raw.Path ?? '') : raw
     if (!path) continue
     const imgUrl = path.startsWith('http') ? path : `https://ci.encar.com/${path}`
     const result = await uploadImage(supabase, imgUrl, vehicle.id, i)
