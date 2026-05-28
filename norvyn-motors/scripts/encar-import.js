@@ -19,48 +19,49 @@
 const SUPABASE_URL = 'https://gbbpnhitpqfoujfcsdty.supabase.co'  // KEIN /rest/v1/ am Ende!
 const SUPABASE_KEY = 'NEUEN_SERVICE_ROLE_KEY_EINTRAGEN'            // Supabase → Settings → API → service_role (neu generieren!)
 
-const START_NR = 3   // Nächste freie NM-Nummer (NM001 + NM002 bereits vergeben)
+const START_NR = 18  // NM003–NM017 bereits vergeben
 
 // ─── FAHRZEUGE DIE IMPORTIERT WERDEN ─────────────────────────────────────────
 
+// carType: Y = koreanische Marken, A = Importmarken (BMW, Mercedes, Audi)
 const TARGETS = [
-  // Performance
-  { maker: 'KIA',           model: '스팅어',    category: 'performance',        limit: 2 },
-  { maker: '제네시스',       model: 'G70',       category: 'performance',        limit: 2 },
-  { maker: 'KIA',           model: 'EV6',       category: 'performance',        limit: 2 },
-  { maker: '제네시스',       model: 'GV70',      category: 'performance',        limit: 2 },
-  { maker: '현대',           model: '아이오닉6',  category: 'performance',        limit: 2 },
+  // Performance (koreanische Marken → CarType.Y)
+  { maker: '기아',           model: '스팅어',    category: 'performance',        limit: 2, carType: 'Y' },
+  { maker: '제네시스',       model: 'G70',       category: 'performance',        limit: 2, carType: 'Y' },
+  { maker: '기아',           model: 'EV6',       category: 'performance',        limit: 2, carType: 'Y' },
+  { maker: '제네시스',       model: 'GV70',      category: 'performance',        limit: 2, carType: 'Y' },
+  { maker: '현대',           model: '아이오닉6',  category: 'performance',        limit: 2, carType: 'Y' },
 
-  // Luxury
-  { maker: '제네시스',       model: 'G80',       category: 'luxury',             limit: 3 },
-  { maker: '제네시스',       model: 'G90',       category: 'luxury',             limit: 2 },
-  { maker: '제네시스',       model: 'GV80',      category: 'luxury',             limit: 2 },
-  { maker: '현대',           model: '팰리세이드',  category: 'luxury',             limit: 2 },
-  { maker: 'KIA',           model: '카니발',     category: 'luxury',             limit: 2 },
-  { maker: 'KIA',           model: 'EV9',       category: 'luxury',             limit: 2 },
-  { maker: '현대',           model: '아이오닉5',  category: 'luxury',             limit: 2 },
+  // Luxury (koreanische Marken → CarType.Y)
+  { maker: '제네시스',       model: 'G80',       category: 'luxury',             limit: 3, carType: 'Y' },
+  { maker: '제네시스',       model: 'G90',       category: 'luxury',             limit: 2, carType: 'Y' },
+  { maker: '제네시스',       model: 'GV80',      category: 'luxury',             limit: 2, carType: 'Y' },
+  { maker: '현대',           model: '팰리세이드',  category: 'luxury',             limit: 2, carType: 'Y' },
+  { maker: '기아',           model: '카니발',     category: 'luxury',             limit: 2, carType: 'Y' },
+  { maker: '기아',           model: 'EV9',       category: 'luxury',             limit: 2, carType: 'Y' },
+  { maker: '현대',           model: '아이오닉5',  category: 'luxury',             limit: 2, carType: 'Y' },
 
-  // Deutsche Marken aus Korea
-  { maker: 'BMW',           model: '5시리즈',    category: 'german_from_korea',  limit: 3 },
-  { maker: 'BMW',           model: '3시리즈',    category: 'german_from_korea',  limit: 3 },
-  { maker: 'BMW',           model: 'X5',        category: 'german_from_korea',  limit: 2 },
-  { maker: 'BMW',           model: 'X3',        category: 'german_from_korea',  limit: 2 },
-  { maker: 'BMW',           model: '7시리즈',    category: 'german_from_korea',  limit: 2 },
-  { maker: '메르세데스-벤츠', model: 'E클래스',   category: 'german_from_korea',  limit: 3 },
-  { maker: '메르세데스-벤츠', model: 'S클래스',   category: 'german_from_korea',  limit: 2 },
-  { maker: '메르세데스-벤츠', model: 'GLE',      category: 'german_from_korea',  limit: 2 },
-  { maker: '메르세데스-벤츠', model: 'GLS',      category: 'german_from_korea',  limit: 1 },
-  { maker: '아우디',         model: 'A6',        category: 'german_from_korea',  limit: 2 },
-  { maker: '아우디',         model: 'A7',        category: 'german_from_korea',  limit: 2 },
-  { maker: '아우디',         model: 'Q5',        category: 'german_from_korea',  limit: 2 },
-  { maker: '아우디',         model: 'Q8',        category: 'german_from_korea',  limit: 1 },
-  { maker: '아우디',         model: 'A8',        category: 'german_from_korea',  limit: 1 },
+  // Deutsche Marken aus Korea (Importautos → CarType.A)
+  { maker: 'BMW',           model: '5시리즈',    category: 'german_from_korea',  limit: 3, carType: 'A' },
+  { maker: 'BMW',           model: '3시리즈',    category: 'german_from_korea',  limit: 3, carType: 'A' },
+  { maker: 'BMW',           model: 'X5',        category: 'german_from_korea',  limit: 2, carType: 'A' },
+  { maker: 'BMW',           model: 'X3',        category: 'german_from_korea',  limit: 2, carType: 'A' },
+  { maker: 'BMW',           model: '7시리즈',    category: 'german_from_korea',  limit: 2, carType: 'A' },
+  { maker: '메르세데스-벤츠', model: 'E클래스',   category: 'german_from_korea',  limit: 3, carType: 'A' },
+  { maker: '메르세데스-벤츠', model: 'S클래스',   category: 'german_from_korea',  limit: 2, carType: 'A' },
+  { maker: '메르세데스-벤츠', model: 'GLE',      category: 'german_from_korea',  limit: 2, carType: 'A' },
+  { maker: '메르세데스-벤츠', model: 'GLS',      category: 'german_from_korea',  limit: 1, carType: 'A' },
+  { maker: '아우디',         model: 'A6',        category: 'german_from_korea',  limit: 2, carType: 'A' },
+  { maker: '아우디',         model: 'A7',        category: 'german_from_korea',  limit: 2, carType: 'A' },
+  { maker: '아우디',         model: 'Q5',        category: 'german_from_korea',  limit: 2, carType: 'A' },
+  { maker: '아우디',         model: 'Q8',        category: 'german_from_korea',  limit: 1, carType: 'A' },
+  { maker: '아우디',         model: 'A8',        category: 'german_from_korea',  limit: 1, carType: 'A' },
 ]
 
 // ─── ÜBERSETZUNGEN ────────────────────────────────────────────────────────────
 
 const MAKER_DE = {
-  '제네시스': 'Genesis', '현대': 'Hyundai', 'KIA': 'Kia', 'BMW': 'BMW',
+  '제네시스': 'Genesis', '현대': 'Hyundai', '기아': 'Kia', 'KIA': 'Kia', 'BMW': 'BMW',
   '메르세데스-벤츠': 'Mercedes-Benz', '아우디': 'Audi', '폭스바겐': 'Volkswagen',
 }
 const MODEL_DE = {
@@ -136,7 +137,7 @@ async function getCarPhotos(page, carId) {
     // Detail API: photos may be in different locations
     const raw = data?.Photos ?? data?.Photo ?? data?.images ?? data?.Images ?? []
     const photos = Array.isArray(raw) ? raw : (raw ? [raw] : [])
-    return photos.map(p => typeof p === 'string' ? p : (p?.path ?? p?.Path ?? p?.url ?? '')).filter(Boolean)
+    return photos.map(p => typeof p === 'string' ? p : (p?.location ?? p?.path ?? p?.Path ?? p?.url ?? '')).filter(Boolean)
   } catch { return [] }
 }
 
@@ -251,7 +252,8 @@ async function main() {
   for (const target of TARGETS) {
     console.log(`\n🔍  ${target.maker} ${target.model}`)
     try {
-      const q = `(And.(And.Hidden.N._.CarType.Y.)_.Manufacturer.${target.maker}._.ModelGroup.${target.model}.)`
+      const ct = target.carType ?? 'Y'
+      const q = `(And.(And.Hidden.N._.CarType.${ct}.)_.Manufacturer.${target.maker}._.ModelGroup.${target.model}.)`
       // Encar API requires parentheses unencoded — only encode non-ASCII (Korean) characters
       const qEncoded = q.replace(/[^\x00-\x7F]/g, c => encodeURIComponent(c))
       const url = `https://api.encar.com/search/car/list/general?count=true&q=${qEncoded}&sr=%7CModifiedDate%7C0%7C${target.limit * 3}`
