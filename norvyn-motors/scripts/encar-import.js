@@ -144,7 +144,7 @@ async function getCarPhotos(page, carId) {
 async function insertVehicle(supabase, page, car, target, num) {
   // Encar API field names (search results use these names)
   const makerKr  = car.Manufacturer ?? car.Maker ?? target.maker
-  const modelKr  = car.ModelGroup   ?? car.Model  ?? target.model
+  const modelKr  = target.model  // Use search query model — always in MODEL_DE map
   const year     = car.FormYear     ?? car.Year   ?? new Date().getFullYear()
   const mileage  = car.Mileage      ?? car.Kilometer ?? null
   const fuelKr   = car.FuelType     ?? car.Fuel   ?? ''
@@ -152,7 +152,9 @@ async function insertVehicle(supabase, page, car, target, num) {
   const colorKr  = car.Color        ?? ''
   const price    = car.Price        ?? null
   const carId    = car.Id           ?? car.CarId  ?? null
-  const trim     = car.Badge        ?? car.BadgeDetail ?? null
+  // Strip Korean characters from trim, keep only ASCII engine specs like "2.0T AWD"
+  const rawTrim  = car.Badge ?? car.BadgeDetail ?? null
+  const trim     = rawTrim ? (rawTrim.replace(/[^\x00-\x7F]/g, '').replace(/\s+/g, ' ').trim() || null) : null
 
   const make  = MAKER_DE[makerKr] ?? makerKr
   const model = MODEL_DE[modelKr] ?? modelKr

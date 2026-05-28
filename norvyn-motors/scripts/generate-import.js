@@ -89,10 +89,14 @@ async function getPhotos(page, carId) {
 
 async function insertVehicle(sb, page, car, target, num) {
   const makerKr = car.Manufacturer ?? target.maker
-  const modelKr = car.ModelGroup ?? car.Model ?? target.model
+  const modelKr = target.model  // Use search query model — always in MODEL_DE map
   const year = car.FormYear ?? car.Year ?? new Date().getFullYear()
   const mileage = car.Mileage ?? null
-  const trim = car.Badge ?? car.BadgeDetail ?? null
+  // Strip Korean characters from trim, keep only ASCII engine specs like "2.0T AWD"
+  const rawTrim = car.Badge ?? car.BadgeDetail ?? null
+  const trim = rawTrim
+    ? (rawTrim.replace(/[^\x00-\x7F]/g, '').replace(/\s+/g, ' ').trim() || null)
+    : null
   const carId = car.Id ?? null
   const make = MAKER_DE[makerKr] ?? makerKr
   const model = MODEL_DE[modelKr] ?? modelKr
